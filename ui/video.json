@@ -98,6 +98,11 @@
           "fixedText": true,
           "value": "arika"
         },
+		{
+          "label": "Arika-ACE",
+          "fixedText": true,
+          "value": "krs"
+        },
         {
           "string": "glossyOption",
           "value": "glossy"
@@ -165,11 +170,6 @@
           "label": "Sega",
           "fixedText": true,
           "value": "sega"
-        },
-		{
-          "label": "KRS",
-          "fixedText": true,
-          "value": "krs"
         },
         {
           "string": "boneOption",

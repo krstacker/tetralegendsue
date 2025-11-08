@@ -43,6 +43,7 @@ export default class Stack extends GameModule {
 	this.toCollapseUnderwater = []
 	this.redrawOnHidden = false
 	this.underwaterHeight = 10
+	this.resetLastPlacedBlocks()
   }
   removeFromArray(array, elementToRemove) {
 	  const indexToRemove = array.indexOf(elementToRemove)
@@ -77,7 +78,9 @@ export default class Stack extends GameModule {
     for (let x = 0; x < this.grid.length; x++) {
       for (let y = 0; y < this.grid[x].length; y++) {
         if (this.grid[x][y] != null) {
-			this.grid[x][y] = "frozen"
+			if (this.lastPlacedBlocks[x][y] === null) {
+				this.grid[x][y] = "frozen"
+			}
 		}
       }
     }
@@ -94,11 +97,13 @@ export default class Stack extends GameModule {
     }
 	return result
   }
-  hidePlacedMinos() {
+  fadePlacedMinos() {
     for (let x = 0; x < this.grid.length; x++) {
       for (let y = 0; y < this.grid[x].length; y++) {
         if (this.grid[x][y] != null) {
-			this.grid[x][y] = "hidden"
+			if (this.lastPlacedBlocks[x][y] === null) {
+				this.grid[x][y] = "hidden"
+			}
 		}
       }
     }
@@ -182,8 +187,9 @@ export default class Stack extends GameModule {
 		this.freezePlacedMinos()
 	}
 	if (this.isFading && this.isHidden === false) {
-		this.hidePlacedMinos()
+		this.fadePlacedMinos()
 	}
+	this.resetLastPlacedBlocks()
     for (let y = 0; y < shape.length; y++) {
       for (let x = 0; x < shape[y].length; x++) {
         const isFilled = shape[y][x]
@@ -222,6 +228,7 @@ export default class Stack extends GameModule {
 			} else {
 				this.grid[xLocation][yLocation] = color
 			}
+			this.lastPlacedBlocks[xLocation][yLocation] = this.grid[xLocation][yLocation]
           }
           this.dirtyCells.push([xLocation, yLocation])
           this.flashX.unshift(xLocation)
@@ -813,6 +820,13 @@ export default class Stack extends GameModule {
       cells[i] = new Array(this.height + this.hiddenHeight)
     }
     this.grid = cells
+  }
+  resetLastPlacedBlocks() {
+    const cells = new Array(this.width)
+    for (let i = 0; i < this.width; i++) {
+      cells[i] = new Array(this.height + this.hiddenHeight)
+    }
+    this.lastPlacedBlocks = cells
   }
   endRollStart() {
 	  sound.add("endingstart")
