@@ -1036,7 +1036,7 @@ body {
   animation-timing-function: ease-in-out;
 }
 
-.tetris-flash.outlineoff {
+.tetris-flash-outlineoff {
   animation-name: tetris-flash-outlineoff;
   animation-duration: .05s;
   animation-iteration-count: 8;
@@ -1044,7 +1044,7 @@ body {
   animation-timing-function: ease-in-out;
 }
 
-.tetris-flash.invis {
+.tetris-flash-invis {
   animation-name: tetris-flash;
   animation-duration: .05s;
   animation-iteration-count: 8;
