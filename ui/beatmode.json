@@ -12,6 +12,7 @@
       "label": "GUIDELINE RULE",
       "description": "The ruleset used in the guideline games.",
       "fixedText": true,
+	  "default": true,
       "action": "submenu",
       "submenu": "mode/beat"
     },
@@ -19,7 +20,6 @@
       "label": "ARCADE RULE",
       "description": "The ruleset used in the arcade games.",
       "fixedText": true,
-      "default": true,
       "action": "submenu",
       "submenu": "mode/beattgm"
     },
@@ -27,7 +27,6 @@
       "label": "TETRA-X RULE",
       "description": "The ruleset used in Tetra-X.",
       "fixedText": true,
-      "default": true,
       "action": "submenu",
       "submenu": "mode/beatx"
     }

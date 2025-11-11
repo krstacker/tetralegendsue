@@ -113,9 +113,9 @@ export function beatLockdown(arg) {
   const piece = arg.piece
   piece.lockDelay = 0
   piece.lockdownType = "classic"
-  let bpmInMs
+  let bpmInMs = gameHandler.game.beatTime
 
-  switch (gameHandler.game.type) {
+  /*switch (gameHandler.game.type) {
     case "non":
       bpmInMs = bpmToMs(180)
       break
@@ -128,7 +128,7 @@ export function beatLockdown(arg) {
 	case "ggg":
       bpmInMs = bpmToMs(154)
       break
-  }
+  }*/
 
   if (piece.isDead || piece.isFrozen) {
     $("#lockdown").value = 0
