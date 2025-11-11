@@ -8092,7 +8092,7 @@ export const loops = {
 			  break
 		  }
 		  case 5: {
-			  gravityMultiplier = 1000000000
+			  gravityMultiplier = 0
 			  break
 		  }
 	  }
