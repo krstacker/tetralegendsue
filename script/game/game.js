@@ -266,7 +266,8 @@ export default class Game {
         sound.killBgm()
 
         if (gametype === "beat" || gametype === "beatx" || gametype === "beattgm") {
-          this.settings.music = settings.game.beat.song
+          //this.settings.music = settings.game.beat.song
+		  this.settings.music = `../beat/${settings.game.beat.song}`
         }
 		
 		if (gametype === "retro") {
@@ -404,7 +405,6 @@ export default class Game {
     this.isDead = true
   }
   end(victory = false) {
-    document.getElementById("myVideo").style.opacity = 0
     this.resetBeatStuff()
     this.isOver = true
     $("#combo-counter-container").classList.add("hidden")
