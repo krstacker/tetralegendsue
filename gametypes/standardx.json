@@ -9,7 +9,7 @@
     "rotationSystem": "tetrax",
     "skin": "tetrax",
     "soundbank": "tetrax",
-    "music": ["../standardx/standard","../standardx/standard-last","../prox/pro","../prox/pro-last"],
+    "music": ["../standardx/standard","../standardx/standard-middle","../standardx/standard-last"],
     "scoreTable": "tetrax",
     "background": "marathon.jpg"
   },

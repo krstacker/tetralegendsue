@@ -7333,10 +7333,17 @@ export const loops = {
         game.piece.lockDelayLimit = 500
       }
 	  if (game.stat.level >= 16 && game.musicProgression < 1) {
-		if (game.stat.piece > 0) {
+		if (game.stat.piece > 0  || game.timePassed > 0) {
           sound.killBgm()
           sound.playBgm(game.settings.music[1], game.type)
 		  game.musicProgression = 1
+        }
+      }
+	  if (game.stat.level >= 32 && game.musicProgression < 2) {
+		if (game.stat.piece > 0 || game.timePassed > 0) {
+          sound.killBgm()
+          sound.playBgm(game.settings.music[2], game.type)
+		  game.musicProgression = 2
         }
       }
       updateFallSpeed(game)
@@ -7656,7 +7663,11 @@ export const loops = {
       levelUpdate(game)
     },
     onInit: (game) => {
-      sound.playMenuSe("hardstart3")
+	  if (settings.game.prox.startingLevel >= 8) {
+		  sound.playMenuSe("hardstart4")
+	  } else {
+		  sound.playMenuSe("hardstart3")
+	  }
       shown20GMessage = settings.game.prox.startingLevel > 3 ? true : false
       shownHoldWarning = false
       game.lineGoal = 200
