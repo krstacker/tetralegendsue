@@ -284,14 +284,23 @@ export default class Game {
 		
 		if (gametype === "retro") {
           this.settings.music = settings.game.retro.music
+		  if (this.settings.rotationSystem === "heboris" || this.loadedSoundbank === "heboris") {
+			  this.settings.music = "../heboris/hebo"
+		  }
         }
 		
 		if (gametype === "handheld") {
           this.settings.music = settings.game.handheld.music
+		  if (this.settings.rotationSystem === "heboris" || this.loadedSoundbank === "heboris") {
+			  this.settings.music = "../heboris/hebo"
+		  }
         }
 		
 		if (gametype === "deluxe") {
           this.settings.music = settings.game.deluxe.music
+		  if (this.settings.rotationSystem === "heboris" || this.loadedSoundbank === "heboris") {
+			  this.settings.music = "../heboris/hebo"
+		  }
         }
 
         if (this.settings.musicLinePoints != null) {
