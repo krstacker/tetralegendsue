@@ -12,7 +12,7 @@ export default function segaRotate(arg) {
   let spawnY = piece.lowestY
   let pieceY = piece.y + spawnY
   if (piece.parent.rotationSystem === "auto" || piece.parent.rotationSystem === "sega") {
-  if (pieceShape === "I") {
+  if (pieceShape === "Z") {
 	  if (pieceY <= spawnY + 1) {
 		  return
 	  }
