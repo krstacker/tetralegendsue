@@ -821,40 +821,40 @@ export default class Piece extends GameModule {
     const holdBlocks = []
     const holdPiece = this.parent.hold.getPiece()
 
-    let holdthis.shape
+    let holdPieceShape
     let spawnOffsets
 
     switch (settings.settings.shapeOverride) {
       case "mono":
-        holdthis.shape =
+        holdPieceShape =
           MONOMINO_PIECES[holdPiece].shape[
             INITIAL_ORIENTATION[this.parent.rotationSystem][holdPiece]
           ]
         spawnOffsets = SPAWN_OFFSETS["monomino"][holdPiece]
         break
       case "do":
-        holdthis.shape =
+        holdPieceShape =
           DOMINO_PIECES[holdPiece].shape[
             INITIAL_ORIENTATION[this.parent.rotationSystem][holdPiece]
           ]
         spawnOffsets = SPAWN_OFFSETS["monomino"][holdPiece]
         break
       case "tro":
-        holdthis.shape =
+        holdPieceShape =
           TROMINO_PIECES[holdPiece].shape[
             INITIAL_ORIENTATION[this.parent.rotationSystem][holdPiece]
           ]
         spawnOffsets = SPAWN_OFFSETS[this.parent.rotationSystem][holdPiece]
         break
       case "pento":
-        holdthis.shape =
+        holdPieceShape =
           PENTOMINO_PIECES[holdPiece].shape[
             INITIAL_ORIENTATION[this.parent.rotationSystem][holdPiece]
           ]
         spawnOffsets = SPAWN_OFFSETS[this.parent.rotationSystem][holdPiece]
         break
       default:
-        holdthis.shape =
+        holdPieceShape =
           PIECES[holdPiece].shape[
             INITIAL_ORIENTATION[this.parent.rotationSystem][holdPiece]
           ]
@@ -862,9 +862,9 @@ export default class Piece extends GameModule {
         break
     }
 
-    for (let y = 0; y < holdthis.shape.length; y++) {
-      for (let x = 0; x < holdthis.shape[y].length; x++) {
-        const isFilled = holdthis.shape[y][x]
+    for (let y = 0; y < holdPieceShape.length; y++) {
+      for (let x = 0; x < holdPieceShape[y].length; x++) {
+        const isFilled = holdPieceShape[y][x]
         if (isFilled) {
           holdBlocks.push([
             x + spawnOffsets[0] + this.xSpawnOffset,
