@@ -1309,11 +1309,11 @@ export default class Piece extends GameModule {
   rotate180() {
 	if (this.parent.rotationSystem === "sega") {
 		if (this.shape === "Z") {
-			if (this.y + this.lowestY - 1 <= this.lowestY) {
+			if (this.y + this.lowestY - 2 <= this.lowestY) {
 				return
 			}
-		} else if (this.shape === "I") {
-			if (this.y + this.lowestY + 1 <= this.lowestY) {
+		} else if (this.shape === "I" || this.shape === "T") {
+			if (this.y + this.lowestY + 2 <= this.lowestY) {
 				return
 			}
 		} else {
