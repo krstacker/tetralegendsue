@@ -238,45 +238,45 @@ const updateSegaBg = (game) => {
 	else if (game.stat.level >= 0) {document.getElementById("arcadeBackground").style.setProperty("background-image", `url('bgs/back0.png')`)}
 }
 const updateTAPGrade = (game) => {
-	  if (game.stat.level >= 999 && game.stat.line >= 180 && game.stack.isHidden && endRollPassed && endRollLines >= 32)
+	  if (game.stat.level >= 999 && game.nonSingleClears >= 180 && game.stack.isHidden && endRollPassed && endRollLines >= 32)
 		game.stat.grade = "GM"
-	  else if (game.stat.level >= 999 && game.stat.line >= 180)
+	  else if (game.stat.level >= 999 && game.nonSingleClears >= 180)
         game.stat.grade = "M"
-      else if (game.stat.line >= 170)
+      else if (game.nonSingleClears >= 170)
         game.stat.grade = "S9"
-	  else if (game.stat.line >= 160)
+	  else if (game.nonSingleClears >= 160)
         game.stat.grade = "S8"
-	  else if (game.stat.line >= 150)
+	  else if (game.nonSingleClears >= 150)
         game.stat.grade = "S7"
-	  else if (game.stat.line >= 140)
+	  else if (game.nonSingleClears >= 140)
         game.stat.grade = "S6"
-	  else if (game.stat.line >= 130)
+	  else if (game.nonSingleClears >= 130)
         game.stat.grade = "S5"
-	  else if (game.stat.line >= 120)
+	  else if (game.nonSingleClears >= 120)
         game.stat.grade = "S4"
-	  else if (game.stat.line >= 110)
+	  else if (game.nonSingleClears >= 110)
         game.stat.grade = "S3"
-	  else if (game.stat.line >= 110)
+	  else if (game.nonSingleClears >= 110)
         game.stat.grade = "S2"
-	  else if (game.stat.line >= 95)
+	  else if (game.nonSingleClears >= 95)
         game.stat.grade = "S1"
-	  else if (game.stat.line >= 80)
+	  else if (game.nonSingleClears >= 80)
         game.stat.grade = "1"
-	  else if (game.stat.line >= 70)
+	  else if (game.nonSingleClears >= 70)
         game.stat.grade = "2"
-	  else if (game.stat.line >= 60)
+	  else if (game.nonSingleClears >= 60)
         game.stat.grade = "3"
-	  else if (game.stat.line >= 50)
+	  else if (game.nonSingleClears >= 50)
         game.stat.grade = "4"
-	  else if (game.stat.line >= 40)
+	  else if (game.nonSingleClears >= 40)
         game.stat.grade = "5"
-	  else if (game.stat.line >= 30)
+	  else if (game.nonSingleClears >= 30)
         game.stat.grade = "6"
-	  else if (game.stat.line >= 20)
+	  else if (game.nonSingleClears >= 20)
         game.stat.grade = "7"
-	  else if (game.stat.line >= 10)
+	  else if (game.nonSingleClears >= 10)
         game.stat.grade = "8"
-	  else if (game.stat.line >= 0)
+	  else if (game.nonSingleClears >= 0)
         game.stat.grade = "9"
 	  if (lastGrade !== game.stat.grade && game.stat.grade !== "N/A") {
 		  if (game.stat.grade !== "9") {
@@ -430,7 +430,7 @@ const updateTIGrade = (game) => {
 		gradeIndex = 32
 	  else {
 	    for (const line of lineRequirementTable) {
-			if (game.stat.line >= line) {
+			if (game.nonSingleClears >= line) {
 				if (game.stat.level >= 999 && endRollLines >= 32) {
 					gradeIndex = Math.max(
 						0, 

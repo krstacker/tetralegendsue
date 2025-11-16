@@ -385,6 +385,11 @@ export default class Stack extends GameModule {
           }
         }
       }
+	  if (this.lineClear >= 2) {
+		  this.parent.nonSingleClears += this.lineClear
+	  } else if (isSpin) {
+		  this.parent.nonSingleClears += this.lineClear
+	  }
 	  if (this.toCollapse.length === 0) {
 		this.parent.calculateActionText(
 			this.lineClear,

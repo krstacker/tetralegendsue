@@ -108,6 +108,7 @@ export default class Game {
     this.timePassed = 0
 	this.timePassedOffset = 0
     this.timePassedAre = 0
+	this.nonSingleClears = 0
     loadGameType(gametype)
       .then((gameData) => {
         gtag("event", "play", {
