@@ -992,19 +992,19 @@ body {
   from {
     filter:
 	brightness(100%)
-	drop-shadow(0em 0em 0em rgba(255,255,255,0.25))
-    drop-shadow(0em 0em 0em rgba(255,255,255,0.25))
-    drop-shadow(0em 0em 0em rgba(255,255,255,0.25))
-    drop-shadow(0em 0em 0em rgba(255,255,255,0.25))
+	drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
+    drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
+    drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
+    drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
   }
 
   to {
     filter:
 	brightness(800%)
-	drop-shadow(0em 0em 0em rgba(255,255,255,0.25))
-    drop-shadow(0em 0em 0em rgba(255,255,255,0.25))
-    drop-shadow(0em 0em 0em rgba(255,255,255,0.25))
-    drop-shadow(0em 0em 0em rgba(255,255,255,0.25))
+	drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
+    drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
+    drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
+    drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
   }
 }
 
@@ -1012,19 +1012,21 @@ body {
   from {
     filter:
 	brightness(100%)
-	drop-shadow(0.2em 0.2em 0em rgba(255,255,255,0.25))
-    drop-shadow(-0.2em -0.2em 0em rgba(255,255,255,0.25))
-    drop-shadow(0.2em -0.2em 0em rgba(255,255,255,0.25))
-    drop-shadow(-0.2em 0.2em 0em rgba(255,255,255,0.25))
+	url(#stack-outline)
+	drop-shadow(0.2em 0.2em 0em rgba(255,255,255,0.00))
+    drop-shadow(-0.2em -0.2em 0em rgba(255,255,255,0.00))
+    drop-shadow(0.2em -0.2em 0em rgba(255,255,255,0.00))
+    drop-shadow(-0.2em 0.2em 0em rgba(255,255,255,0.00))
   }
 
   to {
     filter:
 	brightness(800%)
-	drop-shadow(0.2em 0.2em 0em rgba(255,255,255,0.25))
-    drop-shadow(-0.2em -0.2em 0em rgba(255,255,255,0.25))
-    drop-shadow(0.2em -0.2em 0em rgba(255,255,255,0.25))
-    drop-shadow(-0.2em 0.2em 0em rgba(255,255,255,0.25))
+	url(#stack-outline)
+	drop-shadow(0.2em 0.2em 0em rgba(255,255,255,0.00))
+    drop-shadow(-0.2em -0.2em 0em rgba(255,255,255,0.00))
+    drop-shadow(0.2em -0.2em 0em rgba(255,255,255,0.00))
+    drop-shadow(-0.2em 0.2em 0em rgba(255,255,255,0.00))
   }
 }
 
@@ -1475,19 +1477,20 @@ body[theme="tetrjs"] .game-center {
 
 .stack-canvas {
   filter: 
-  drop-shadow(0.2em 0.2em 0em rgba(255,255,255,0.25))
-  drop-shadow(-0.2em -0.2em 0em rgba(255,255,255,0.25))
-  drop-shadow(0.2em -0.2em 0em rgba(255,255,255,0.25))
-  drop-shadow(-0.2em 0.2em 0em rgba(255,255,255,0.25))
+  url(#stack-outline)
+  drop-shadow(0.2em 0.2em 0em rgba(255,255,255,0.00))
+  drop-shadow(-0.2em -0.2em 0em rgba(255,255,255,0.00))
+  drop-shadow(0.2em -0.2em 0em rgba(255,255,255,0.00))
+  drop-shadow(-0.2em 0.2em 0em rgba(255,255,255,0.00))
   ;
 }
 
 .stack-canvas.outlineoff {
   filter: 
-  drop-shadow(0em 0em 0em rgba(255,255,255,0.25))
-  drop-shadow(0em 0em 0em rgba(255,255,255,0.25))
-  drop-shadow(0em 0em 0em rgba(255,255,255,0.25))
-  drop-shadow(0em 0em 0em rgba(255,255,255,0.25))
+  drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
+  drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
+  drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
+  drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
   ;
 }
 

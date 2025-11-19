@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- new outline method -->
+	<filter id="stack-outline" >
+      <feMorphology operator="dilate" in="SourceAlpha" radius="2" />
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="1"/>
+        <feFuncG type="table" tableValues="1"/>
+        <feFuncB type="table" tableValues="1"/>
+      </feComponentTransfer>
+      <feComposite in="SourceGraphic" operator="over" />
+    </filter>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
       async
