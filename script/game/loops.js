@@ -7779,7 +7779,7 @@ export const loops = {
       levelUpdate(game)
     },
     onInit: (game) => {
-	  if (settings.game.prox.startingLevel >= 8) {
+	  if (settings.game.prox.startingLevel - 1 >= 8) {
 		  sound.playMenuSe("hardstart4")
 	  } else {
 		  sound.playMenuSe("hardstart3")
