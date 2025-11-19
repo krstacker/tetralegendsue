@@ -989,10 +989,6 @@ export default class Stack extends GameModule {
         const yPos =
           y * cellSize + cellSize * buffer - cellSize * this.hiddenHeight
         img.height = cellSize
-		if (this.isHidden === false && this.isFading === false) {
-			ctx.fillStyle = "#000000"
-			ctx.fillRect(xPos, Math.floor(yPos), cellSize, cellSize)
-		}
         ctx.drawImage(img, xPos, Math.floor(yPos), cellSize, cellSize)
         ctx.globalCompositeOperation = "multiply"
         ctx.fillStyle = "#0003"
