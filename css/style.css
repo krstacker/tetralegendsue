@@ -992,19 +992,13 @@ body {
   from {
     filter:
 	brightness(100%)
-	drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
-    drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
-    drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
-    drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
+	drop-shadow(0em 0em 0em rgba(255,255,255,0))
   }
 
   to {
     filter:
 	brightness(800%)
-	drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
-    drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
-    drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
-    drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
+	drop-shadow(0em 0em 0em rgba(255,255,255,0))
   }
 }
 
@@ -1012,21 +1006,19 @@ body {
   from {
     filter:
 	brightness(100%)
-	url(#stack-outline)
-	drop-shadow(0.2em 0.2em 0em rgba(255,255,255,0.00))
-    drop-shadow(-0.2em -0.2em 0em rgba(255,255,255,0.00))
-    drop-shadow(0.2em -0.2em 0em rgba(255,255,255,0.00))
-    drop-shadow(-0.2em 0.2em 0em rgba(255,255,255,0.00))
+	drop-shadow(0.2em 0em 0em rgba(255,255,255,0.625))
+	drop-shadow(-0.2em 0em 0em rgba(255,255,255,0.625))
+	drop-shadow(0em 0.2em 0em rgba(255,255,255,0.625))
+	drop-shadow(0em -0.2em 0em rgba(255,255,255,0.625))
   }
 
   to {
     filter:
 	brightness(800%)
-	url(#stack-outline)
-	drop-shadow(0.2em 0.2em 0em rgba(255,255,255,0.00))
-    drop-shadow(-0.2em -0.2em 0em rgba(255,255,255,0.00))
-    drop-shadow(0.2em -0.2em 0em rgba(255,255,255,0.00))
-    drop-shadow(-0.2em 0.2em 0em rgba(255,255,255,0.00))
+	drop-shadow(0.2em 0em 0em rgba(255,255,255,0.625))
+	drop-shadow(-0.2em 0em 0em rgba(255,255,255,0.625))
+	drop-shadow(0em 0.2em 0em rgba(255,255,255,0.625))
+	drop-shadow(0em -0.2em 0em rgba(255,255,255,0.625))
   }
 }
 
@@ -1477,28 +1469,21 @@ body[theme="tetrjs"] .game-center {
 
 .stack-canvas {
   filter: 
-  url(#stack-outline)
-  drop-shadow(0.2em 0.2em 0em rgba(255,255,255,0.00))
-  drop-shadow(-0.2em -0.2em 0em rgba(255,255,255,0.00))
-  drop-shadow(0.2em -0.2em 0em rgba(255,255,255,0.00))
-  drop-shadow(-0.2em 0.2em 0em rgba(255,255,255,0.00))
+  drop-shadow(0.2em 0em 0em rgba(255,255,255,0.625))
+  drop-shadow(-0.2em 0em 0em rgba(255,255,255,0.625))
+  drop-shadow(0em 0.2em 0em rgba(255,255,255,0.625))
+  drop-shadow(0em -0.2em 0em rgba(255,255,255,0.625))
   ;
 }
 
 .stack-canvas.outlineoff {
   filter: 
-  drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
-  drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
-  drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
-  drop-shadow(0em 0em 0em rgba(255,255,255,0.00))
+  drop-shadow(0em 0em 0em rgba(255,255,255,0))
   ;
 }
 
 .stack-canvas.invis {
   filter: 
-  drop-shadow(0em 0em 0em rgba(255,255,255,0))
-  drop-shadow(0em 0em 0em rgba(255,255,255,0))
-  drop-shadow(0em 0em 0em rgba(255,255,255,0))
   drop-shadow(0em 0em 0em rgba(255,255,255,0))
   ;
 }

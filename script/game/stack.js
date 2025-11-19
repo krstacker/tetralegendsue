@@ -992,6 +992,11 @@ export default class Stack extends GameModule {
         ctx.drawImage(img, xPos, Math.floor(yPos), cellSize, cellSize)
         ctx.globalCompositeOperation = "multiply"
         ctx.fillStyle = "#0003"
+		if (this.isHidden || this.isFading) {
+			ctx.fillStyle = "#0003"
+		} else {
+			ctx.fillStyle = "#000000"
+		}
         ctx.fillRect(xPos, Math.floor(yPos), cellSize, cellSize)
       }
     }
@@ -1063,9 +1068,12 @@ export default class Stack extends GameModule {
       }
     }
     // Line clear animation
+	let clearDirtyCells = true
+	let lineClearCtx = this.parent.piece.ctx
     if (this.toCollapse.length > 0 
 	&& this.isFrozen !== true 
 	&& this.parent.piece.useBoneBlocks !== true) {
+	  clearDirtyCells = true
       const brightness = Math.max(
         0,
         1 -
@@ -1108,7 +1116,8 @@ export default class Stack extends GameModule {
           Math.round(this.parent.piece.are / this.flashClearRate) % 2 !== 1 ||
           !this.flashLineClear
         ) {
-          ctx.fillRect(
+		  lineClearCtx.fillStyle = ctx.fillStyle
+          lineClearCtx.fillRect(
             0,
             Math.floor(
               (this.toCollapse[i] - this.hiddenHeight) * cellSize +
@@ -1120,6 +1129,7 @@ export default class Stack extends GameModule {
         }
       }
   } else if (this.toCollapse.length > 0) {
+	  clearDirtyCells = false
 	  for (const i of this.toCollapse) {
 		this.parent.particle.generate({
           amount: 2,
@@ -1138,7 +1148,9 @@ export default class Stack extends GameModule {
 	  }
 	  this.reRenderStack()
   }
-    this.dirtyCells = []
+    if (clearDirtyCells) {
+		this.dirtyCells = []
+	}
   }
   linesToLevel(levelLimit, levelsPerSection) {
     const newLevel = Math.min(
