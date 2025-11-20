@@ -172,6 +172,11 @@
           "value": "sega"
         },
 		{
+          "label": "DTET",
+          "fixedText": true,
+          "value": "dtet"
+        },
+		{
           "label": "KRS",
           "fixedText": true,
           "value": "krs"

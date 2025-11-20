@@ -1108,6 +1108,7 @@ SPAWN_OFFSETS.battle = SPAWN_OFFSETS.srs
 SPAWN_OFFSETS.friends = SPAWN_OFFSETS.srs
 SPAWN_OFFSETS.dshock = SPAWN_OFFSETS.srs
 SPAWN_OFFSETS.krs = SPAWN_OFFSETS.ars
+SPAWN_OFFSETS.drs = SPAWN_OFFSETS.ars
 SPAWN_OFFSETS.t99 = SPAWN_OFFSETS.srs
 SPAWN_OFFSETS.ppt = SPAWN_OFFSETS.srs
 SPAWN_OFFSETS.arsae = SPAWN_OFFSETS.ace
@@ -1157,6 +1158,7 @@ INITIAL_ORIENTATION.battle = INITIAL_ORIENTATION.srs
 INITIAL_ORIENTATION.friends = INITIAL_ORIENTATION.srs
 INITIAL_ORIENTATION.dshock = INITIAL_ORIENTATION.srs
 INITIAL_ORIENTATION.toj = INITIAL_ORIENTATION.srs
+INITIAL_ORIENTATION.drs = INITIAL_ORIENTATION.arsx
 INITIAL_ORIENTATION.krs = INITIAL_ORIENTATION.arsx
 INITIAL_ORIENTATION.t99 = INITIAL_ORIENTATION.srs
 INITIAL_ORIENTATION.ppt = INITIAL_ORIENTATION.srs
@@ -3686,6 +3688,13 @@ KICK_TEMPLATES.krs = {
   T: KICK_TEMPLATES.tetrax.x,
   O: KICK_TEMPLATES.tetrax.x,
 }
+KICK_TEMPLATES.drs = {
+  x: KICK_TEMPLATES.tetrax.x,  
+  I: KICK_TEMPLATES.tetrax.I,
+  LJ: KICK_TEMPLATES.asc.x,
+  T: KICK_TEMPLATES.asc.x,
+  O: KICK_TEMPLATES.tetrax.x,
+}
 
 export const KICK_TABLES = {
   asc: {
@@ -3982,6 +3991,15 @@ KICK_TABLES.krs = {
   J: KICK_TEMPLATES.krs.LJ,
   S: KICK_TEMPLATES.krs.x,
 }
+KICK_TABLES.drs = {
+  I: KICK_TEMPLATES.drs.I,
+  L: KICK_TEMPLATES.drs.LJ,
+  O: KICK_TEMPLATES.drs.O,
+  Z: KICK_TEMPLATES.drs.x,
+  T: KICK_TEMPLATES.drs.T,
+  J: KICK_TEMPLATES.drs.LJ,
+  S: KICK_TEMPLATES.drs.x,
+}
 
 export const PIECE_COLORS = {
   srs: {
@@ -4103,6 +4121,7 @@ PIECE_COLORS.srsx = PIECE_COLORS.srs
 PIECE_COLORS.sega = PIECE_COLORS.ars
 PIECE_COLORS.tonline = PIECE_COLORS.srs
 PIECE_COLORS.krs = PIECE_COLORS.arsx
+PIECE_COLORS.drs = PIECE_COLORS.arsx
 PIECE_COLORS.heboris = PIECE_COLORS.ars
 PIECE_COLORS.newcentury = PIECE_COLORS.srs
 PIECE_COLORS.party = PIECE_COLORS.friends
@@ -4161,6 +4180,7 @@ NEXT_OFFSETS.worldae = NEXT_OFFSETS.aceworld
 NEXT_OFFSETS.sega = NEXT_OFFSETS.ars
 NEXT_OFFSETS.tonline = NEXT_OFFSETS.srs
 NEXT_OFFSETS.krs = NEXT_OFFSETS.arsx
+NEXT_OFFSETS.drs = NEXT_OFFSETS.arsx
 NEXT_OFFSETS.newcentury = NEXT_OFFSETS.srs
 NEXT_OFFSETS.heboris = NEXT_OFFSETS.ars
 NEXT_OFFSETS.party = NEXT_OFFSETS.friends
@@ -4533,6 +4553,7 @@ PIECE_OFFSETS.krs = {
   J: PIECE_OFFSETS.tetrax.J,
   S: PIECE_OFFSETS.tetrax.S,
 }
+PIECE_OFFSETS.drs = PIECE_OFFSETS.krs
 
 export const PIECE_BINARIES = {
   L: 0b000,
@@ -5079,6 +5100,7 @@ export const SKIN_SETS = {
   newcentury: "sega",
   tonline: "standard",
   krs: "krs",
+  drs: "dtet",
   heboris: "tap",
   toj: "toj",
   party: "party",
@@ -5111,6 +5133,7 @@ export const SOUND_SETS = {
   newcentury: "newcentury",
   tonline: "tonline",
   krs: "tetrax",
+  drs: "tetrax",
   heboris: "heboris",
   toj: "toj",
   party: "party",

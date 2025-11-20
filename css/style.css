@@ -1461,9 +1461,11 @@ body[theme="tetrjs"] .stats label {
   animation-direction: alternate;
 }
 
+/*
 body[theme="tetrjs"] .game-center {
   border-width: .1em;
 }
+*/
 
 .next-matrix {
   display: none;
