@@ -34,6 +34,7 @@ export default class Game {
     this.nextSubCanvas = $("#next-sub")
     this.holdCanvas = $("#hold")
     this.particleCanvas = $("#particle")
+	this.animateCanvas = document.getElementById("animate")
     this.bufferPeek = 0.25
     this.loop
     this.now
@@ -109,6 +110,8 @@ export default class Game {
 	this.timePassedOffset = 0
     this.timePassedAre = 0
 	this.nonSingleClears = 0
+	this.bufferAre = null
+	this.bufferAreLine = null
     loadGameType(gametype)
       .then((gameData) => {
         gtag("event", "play", {
@@ -264,10 +267,18 @@ export default class Game {
 
         this.loop = loops[gametype].update
         this.onPieceSpawn = loops[gametype].onPieceSpawn
+		this.bufferAre = null
+		this.bufferAreLine = null
         for (const element of ["piece", "stack", "next", "hold"]) {
           if (gameData[element] != null) {
             for (const property of Object.keys(gameData[element])) {
               this[element][property] = gameData[element][property]
+			  if (element === "piece" && property === "areLimit") {
+				  this.bufferAre = gameData[element][property]
+			  }
+			  if (element === "piece" && property === "areLineLimit") {
+				  this.bufferAreLine = gameData[element][property]
+			  }
             }
           }
         }
@@ -719,10 +730,11 @@ export default class Game {
       "nextSubCanvas",
       "holdCanvas",
       "particleCanvas",
+	  "animateCanvas",
     ]) {
       if
 	  ( 
-		(element === "pieceCanvas" || element === "stackCanvas" || element === "particleCanvas")
+		(element === "pieceCanvas" || element === "stackCanvas" || element === "particleCanvas" || element === "animateCanvas")
 		&&
 		(game.settings.height <= 10 && game.settings.width <= 5)
 	  )
@@ -1115,26 +1127,40 @@ export default class Game {
               hold: game.hold,
               particle: game.particle,
             })
-			if (game.rotationSystem === "arsae" && input.getGameDown("specialKey")) {
-				game.piece.areLimit = 0
-				game.piece.areLimitLineModifier = 0
+			if (game.rotationSystem === "arsae") {
+				if (input.getGameDown("specialKey")) {
+					game.piece.areLimit = 0
+					game.piece.areLimitLineModifier = game.piece.areLineLimit
+				} else {
+					if (this.bufferAre !== null) {
+						game.piece.areLimit = this.bufferAre
+					}
+				}
 			}
-			if (game.rotationSystem === "drs" && 
-			(
-			input.getGameDown("specialKey") ||
-			input.getGameDown("moveLeft") ||
-			input.getGameDown("moveRight") ||
-			input.getGameDown("rotateLeft") ||
-			input.getGameDown("rotate180") ||
-			input.getGameDown("hold")
-			)
-			) {
-				game.piece.areLimit = 0
-				game.piece.areLineLimit = 0
+			if (game.rotationSystem === "drs") {
+				if (
+				input.getGameDown("specialKey") ||
+				input.getGameDown("moveLeft") ||
+				input.getGameDown("moveRight") ||
+				input.getGameDown("rotateLeft") ||
+				input.getGameDown("rotate180") ||
+				input.getGameDown("hold")
+				) {
+					game.piece.areLimit = 0
+					game.piece.areLineLimit = 0
+					settings.settings.stillShowFullActionTextDespiteZeroLineClearAre = true
+				} else {
+					if (this.bufferAre !== null) {
+						game.piece.areLimit = this.bufferAre
+					}
+					if (this.bufferAreLine !== null) {
+						game.piece.areLineLimit = this.bufferAreLine
+					}
+				}
 			}
 			if (game.rotationSystem === "ds") {
 				game.piece.areLimit = 0
-				game.piece.areLimitLineModifier = 0
+				game.piece.areLimitLineModifier = game.piece.areLineLimit
 			}
           }
           game.particle.update(msPassed)

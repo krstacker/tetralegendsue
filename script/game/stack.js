@@ -931,8 +931,10 @@ export default class Stack extends GameModule {
     const cellSize = this.parent.cellSize
     const buffer = this.parent.bufferPeek
     const ctx = this.ctx
-	let flashCtx = this.parent.piece.ctx
-	let lineClearCtx = this.parent.piece.ctx
+	/*let flashCtx = this.parent.piece.ctx
+	let lineClearCtx = this.parent.piece.ctx*/
+	let flashCtx = toCtx(this.parent.animateCanvas)
+	let lineClearCtx = toCtx(this.parent.animateCanvas)
     const flash = (
       "0" +
       Math.floor((1 - this.flashTime / this.flashLimit) * 255).toString(16)
@@ -946,6 +948,8 @@ export default class Stack extends GameModule {
       const x = cell[0] * cellSize
       const y = (cell[1] - this.hiddenHeight) * cellSize + buffer * cellSize
       ctx.clearRect(x, Math.floor(y), cellSize, cellSize)
+	  flashCtx.clearRect(x, Math.floor(y), cellSize, cellSize)
+	  lineClearCtx.clearRect(x, Math.floor(y), cellSize, cellSize)
     }
     /*
     for (let x = 0; x < this.grid.length; x++) {
@@ -1019,7 +1023,6 @@ export default class Stack extends GameModule {
           this.flashY[i] * cellSize +
           cellSize * buffer -
           cellSize * this.hiddenHeight
-		flashCtx.clearRect(x, Math.floor(y), cellSize, cellSize)
         flashCtx.fillStyle = `#ffffff${flash}`
         if (
           settings.settings.lockFlash !== "off" &&

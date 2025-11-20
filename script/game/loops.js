@@ -5718,9 +5718,11 @@ export const loops = {
             break
           case "silBoardOn":
             $("#stack").classList.add("sil")
+			document.getElementById("animate").classList.add("sil")
             break
           case "silBoardOff":
             $("#stack").classList.remove("sil")
+			document.getElementById("animate").classList.remove("sil")
             break
           case "silPieceOn":
             $("#piece").classList.add("sil")
