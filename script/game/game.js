@@ -1115,6 +1115,25 @@ export default class Game {
               hold: game.hold,
               particle: game.particle,
             })
+			if (game.rotationSystem === "arsae" && input.getGameDown("specialKey")) {
+				game.areLimit = 0
+			}
+			if (game.rotationSystem === "drs" && 
+			(
+			input.getGameDown("specialKey") ||
+			input.getGameDown("moveLeft") ||
+			input.getGameDown("moveRight") ||
+			input.getGameDown("rotateLeft") ||
+			input.getGameDown("rotate180") ||
+			input.getGameDown("hold")
+			)
+			) {
+				game.areLimit = 0
+				game.areLineLimit = 0
+			}
+			if (game.rotationSystem === "ds") {
+				game.areLimit = 0
+			}
           }
           game.particle.update(msPassed)
           game.updateMatrix(msPassed)
