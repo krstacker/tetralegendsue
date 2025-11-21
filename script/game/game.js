@@ -1149,6 +1149,7 @@ export default class Game {
 					game.areLineBuffered = false
 					game.piece.areLimit = 0
 					game.piece.areLineLimit = 0
+					game.piece.areLimitLineModifier = game.piece.areLineLimit
 					settings.settings.stillShowFullActionTextDespiteZeroLineClearAre = true
 				}
 			}
