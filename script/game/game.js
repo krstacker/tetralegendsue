@@ -1147,10 +1147,7 @@ export default class Game {
 				if (
 				input.getGameDown("specialKey") ||
 				input.getGameDown("moveLeft") ||
-				input.getGameDown("moveRight") ||
-				input.getGameDown("rotateLeft") ||
-				input.getGameDown("rotate180") ||
-				input.getGameDown("hold")
+				input.getGameDown("moveRight")
 				) {
 					game.piece.areLimit = 0
 					game.piece.areLineLimit = 0
