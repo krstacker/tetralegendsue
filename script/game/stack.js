@@ -338,6 +338,22 @@ export default class Stack extends GameModule {
     }
     if (this.lineClear > 0) {
       // TODO mini tspin and clean this up
+	  if (this.lineClear >= 2) {
+		  this.parent.nonSingleClears += this.lineClear
+	  } else if (isSpin) {
+		  this.parent.nonSingleClears += this.lineClear
+	  }
+	  if (this.lineClear > 4) {
+		if (sound.sounds["dtet_erasenot4"] !== null) {
+			sound.sounds["dtet_erasenot4"].rate = 1 + Math.min(0, this.parent.combo*0.1)
+			sound.add("dtet_erasenot4")
+		}
+	  } else {
+		if (sound.sounds["dtet_erase4"] !== null) {
+			sound.sounds["dtet_erase4"].rate = 1 + Math.min(0, this.parent.combo*0.1)
+			sound.add("dtet_erase4")
+		}
+	  }
       if (SCORE_TABLES[this.parent.settings.scoreTable].hasCombo) {
         this.parent.combo++
         this.parent.stat.maxcombo = Math.max(
@@ -391,22 +407,6 @@ export default class Stack extends GameModule {
           }
         }
       }
-	  if (this.lineClear >= 2) {
-		  this.parent.nonSingleClears += this.lineClear
-	  } else if (isSpin) {
-		  this.parent.nonSingleClears += this.lineClear
-	  }
-	  if (this.lineClear > 4) {
-		if (sound.sounds["dtet_erasenot4"] !== null) {
-			sound.sounds["dtet_erasenot4"].rate = 1 + Math.min(0, this.parent.combo*0.1)
-			sound.add("dtet_erasenot4")
-		}
-	  } else {
-		if (sound.sounds["dtet_erase4"] !== null) {
-			sound.sounds["dtet_erase4"].rate = 1 + Math.min(0, this.parent.combo*0.1)
-			sound.add("dtet_erase4")
-		}
-	  }
 	  if (this.toCollapse.length === 0) {
 		this.parent.calculateActionText(
 			this.lineClear,
