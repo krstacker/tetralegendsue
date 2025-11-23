@@ -160,7 +160,9 @@ export default class Stack extends GameModule {
     // isSpin = true;
     sound.add("lock")
 	if (sound.sounds["dtet_lock"] !== null) {
-		sound.sounds["dtet_lock"].rate( 1 - Math.max(0, Math.min(0.5, passedY*2.5*0.01)) )
+		sound.sounds["dtet_lock"].rate(
+		1 - Math.max(0, 0.5 * ( (this.passedY + 1) / (this.parent.settings.height) ) )
+		)
 		sound.add("dtet_lock")
 	}
     this.parent.shiftMatrix("down")
@@ -345,12 +347,12 @@ export default class Stack extends GameModule {
 	  }
 	  if (this.lineClear < 4) {
 		if (sound.sounds["dtet_erasenot4"] !== null) {
-			sound.sounds["dtet_erasenot4"].rate( 1 + Math.min(0, this.parent.combo*0.1) )
+			sound.sounds["dtet_erasenot4"].rate( 1 + Math.min(0, (this.parent.combo+1)*0.1) )
 			sound.add("dtet_erasenot4")
 		}
 	  } else {
 		if (sound.sounds["dtet_erase4"] !== null) {
-			sound.sounds["dtet_erase4"].rate( 1 + Math.min(0, this.parent.combo*0.1) )
+			sound.sounds["dtet_erase4"].rate( 1 + Math.min(0, (this.parent.combo+1)*0.1) )
 			sound.add("dtet_erase4")
 		}
 	  }
