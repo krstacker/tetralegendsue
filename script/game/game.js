@@ -110,8 +110,8 @@ export default class Game {
 	this.timePassedOffset = 0
     this.timePassedAre = 0
 	this.nonSingleClears = 0
-	this.cachedAre = -1
-	this.cachedAreLine = -1
+	this.cachedAre = 0
+	this.cachedAreLine = 0
 	this.useFullAreLine = true
     loadGameType(gametype)
       .then((gameData) => {
@@ -272,18 +272,10 @@ export default class Game {
 
         this.loop = loops[gametype].update
         this.onPieceSpawn = loops[gametype].onPieceSpawn
-		this.cachedAre = -1
-		this.cachedAreLine = -1
         for (const element of ["piece", "stack", "next", "hold"]) {
           if (gameData[element] != null) {
             for (const property of Object.keys(gameData[element])) {
               this[element][property] = gameData[element][property]
-			  if (element === "piece" && property === "areLimit") {
-				  this.cachedAre = gameData[element][property]
-			  }
-			  if (element === "piece" && property === "areLineLimit") {
-				  this.cachedAreLine = gameData[element][property]
-			  }
             }
           }
         }
@@ -1143,6 +1135,13 @@ export default class Game {
 							game.piece.areLimitLineModifier = game.piece.areLineLimit
 						}
 					}
+				} else {
+					if (game.piece.areLimit > 0) {
+						game.cachedAre = game.piece.areLimit
+					}
+					if (game.piece.areLineLimit > 0) {
+						game.cachedAreLine = game.piece.areLineLimit
+					}
 				}
 			}
 			if (game.rotationSystem === "drs" && game.type !== "sega" && game.type !== "sega2") {
@@ -1158,6 +1157,13 @@ export default class Game {
 					game.piece.areLineLimit = 0
 					game.piece.areLimitLineModifier = 0
 					settings.settings.stillShowFullActionTextDespiteZeroLineClearAre = true
+				} else {
+					if (game.piece.areLimit > 0) {
+						game.cachedAre = game.piece.areLimit
+					}
+					if (game.piece.areLineLimit > 0) {
+						game.cachedAreLine = game.piece.areLineLimit
+					}
 				}
 			}
 			if (game.rotationSystem === "ds" && game.type !== "sega" && game.type !== "sega2") {
