@@ -205,6 +205,7 @@ export default class Stack extends GameModule {
 	} else {
 		$(".stack-canvas").classList.remove("invis")
 	}
+	this.resetLastPlacedBlocks()
     for (let y = 0; y < shape.length; y++) {
       for (let x = 0; x < shape[y].length; x++) {
         const isFilled = shape[y][x]
@@ -775,12 +776,19 @@ export default class Stack extends GameModule {
 			this.toCollapse.push(bottomLine)
 		}
 	}
+	let lastPlacedBlocks = this.lastPlacedBlocks
+	this.resetLastPlacedBlocks()
 	for (const y of this.toCollapse) {
       for (let x = 0; x < this.grid.length; x++) {
         for (let shiftY = y; shiftY >= 0; shiftY--) {
           if (this.noFrozenMinos() === true) {
 			this.grid[x][shiftY] = this.grid[x][shiftY - 1]
-			this.resetLastPlacedBlocks()
+			//this.resetLastPlacedBlocks()
+			for (const block of lastPlacedBlocks) {
+				if (block[0] === x && block[1] === shiftY) {
+					this.lastPlacedBlocks.push(x, shiftY - 1)
+				}
+			}
 			if (
 				this.grid[x][shiftY] != null &&
 				this.grid[x][shiftY - 1] != null
@@ -790,7 +798,12 @@ export default class Stack extends GameModule {
 			this.dirtyCells.push([x, shiftY + 1])
 		  } else if (y === bottomLine && this.lineClear >= 4) {
 			this.grid[x][shiftY] = this.grid[x][shiftY - 1]
-			this.resetLastPlacedBlocks()
+			//this.resetLastPlacedBlocks()
+			for (const block of lastPlacedBlocks) {
+				if (block[0] === x && block[1] === shiftY) {
+					this.lastPlacedBlocks.push(x, shiftY - 1)
+				}
+			}
 			if (
 				this.grid[x][shiftY] != null &&
 				this.grid[x][shiftY - 1] != null
@@ -813,7 +826,12 @@ export default class Stack extends GameModule {
       for (let x = 0; x < this.grid.length; x++) {
         for (let shiftY = y; shiftY >= 0; shiftY--) {
           this.grid[x][shiftY] = this.grid[x][shiftY - 1]
-		  this.resetLastPlacedBlocks()
+		  //this.resetLastPlacedBlocks()
+		  for (const block of lastPlacedBlocks) {
+				if (block[0] === x && block[1] === shiftY) {
+					this.lastPlacedBlocks.push(x, shiftY - 1)
+				}
+		  }
           if (
             this.grid[x][shiftY] != null &&
             this.grid[x][shiftY - 1] != null
