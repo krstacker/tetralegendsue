@@ -785,7 +785,7 @@ export default class Stack extends GameModule {
 				let index = this.lastPlacedBlocks.indexOf(entry)
 				let oldY = entry[1]
 				let newY = oldY - 1
-				this.lastPlacedBlocks[entry][1] = newY
+				this.lastPlacedBlocks[index][1] = newY
 			}
 			if (
 				this.grid[x][shiftY] != null &&
@@ -801,7 +801,7 @@ export default class Stack extends GameModule {
 				let index = this.lastPlacedBlocks.indexOf(entry)
 				let oldY = entry[1]
 				let newY = oldY - 1
-				this.lastPlacedBlocks[entry][1] = newY
+				this.lastPlacedBlocks[index][1] = newY
 			}
 			if (
 				this.grid[x][shiftY] != null &&
@@ -830,7 +830,7 @@ export default class Stack extends GameModule {
 				let index = this.lastPlacedBlocks.indexOf(entry)
 				let oldY = entry[1]
 				let newY = oldY - 1
-				this.lastPlacedBlocks[entry][1] = newY
+				this.lastPlacedBlocks[index][1] = newY
 		  }
           if (
             this.grid[x][shiftY] != null &&
