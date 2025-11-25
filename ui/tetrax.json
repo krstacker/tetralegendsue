@@ -34,7 +34,7 @@
 	  "secretA": true,
 	  "fixedText": true,
       "action": "submenu",
-      "submenu": "mode/nontwo"
+      "submenu": "mode/frozenx"
     }
   ]
 }
