@@ -9,6 +9,7 @@
 - New Retro mode [Cabinet (System 16)]
 - New Skins [PPT, T99, TOJ, Friends, Party, Pyramidal, DTET, KRS]
 - New Beat mode song [Gas Gas Gas (180BPM)]
+- New secret modes [Can you find them?]
 
 # Notes
 - (Pressure) Backpedalling was impossible to replicate on Tetra Legends.

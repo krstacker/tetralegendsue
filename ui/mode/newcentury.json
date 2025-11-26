@@ -2,12 +2,13 @@
   "properties": {
     "parent": "retro",
     "langOverride": "mode-options",
-    "game": "sega2",
-    "pgmusic": "pg-sega"
+    "game": "newcentury",
+    "pgmusic": "pg-newcentury"
   },
   "data": [
     {
-      "label": "Cabinet-EX",
+      "label": "New Century",
+      "description": "",
       "fixedText": true,
       "type": "header"
     }

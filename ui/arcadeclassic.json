@@ -4,8 +4,8 @@
   },
   "data": [
     {
-      "string": "Arcade (Classic Rule)",
-      "fixedText": true,
+      "string": "arcadeLabel",
+      "langOverride": "menu_root",
       "type": "header"
     },
 	{
@@ -73,7 +73,7 @@
       "submenu": "mode/rounds"
     },
 	{
-      "label": "SPECIAL-AE 2.1",
+      "label": "SUDDEN EX",
       "description": "Secret mode! Similar to Sudden, but the pieces are faster!",
       "fixedText": true,
 	  "secretA": true,
@@ -81,7 +81,7 @@
       "submenu": "mode/normal21"
     },
 	{
-      "label": "SPECIAL-AE 3.1",
+      "label": "SUDDEN-TI EX",
       "description": "Secret mode! Similar to Sudden-TI, but its 700 levels longer and the already crazy things are even crazier!",
       "fixedText": true,
 	  "secretA": true,

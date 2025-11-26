@@ -37,10 +37,10 @@
 	{
       "fixedText": true,
 	  "secretA": true,
-      "label": "Cabinet-EX",
-      "description": "Secret mode! Cabinet's hardest difficulty but on steroids!",
+      "label": "New Century",
+      "description": "Secret mode! Cabinet, but with guideline controls.",
       "action": "submenu",
-      "submenu": "mode/sega2"
+      "submenu": "mode/newcentury"
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "properties": {
-    "parent": "root"
+    "parent": "guideline"
   },
   "data": [
     {
@@ -14,14 +14,14 @@
       "fixedText": true,
       "default": true,
       "action": "submenu",
-      "submenu": "mode/ace"
+      "submenu": "aceclassic"
     },
 	{
       "label": "WORLD RULE",
       "description": "The ruleset used in the guideline games.",
       "fixedText": true,
       "action": "submenu",
-      "submenu": "mode/aceworld"
+      "submenu": "aceworld"
     }
   ]
 }

@@ -439,7 +439,7 @@ const updateTIGrade = (game) => {
 							lineRequirementTable.indexOf(line) + coolsBonus - regretsPenalty
 						)
 					)
-				} else if (game.stat.level >= 999 && endRollLines >= 24) {
+				} else if (game.stat.level >= 999 && regretsPenalty <= 1 && endRollLines >= 24) {
 					gradeIndex = Math.max(
 						0, 
 						Math.min(
@@ -447,7 +447,7 @@ const updateTIGrade = (game) => {
 							lineRequirementTable.indexOf(line) + coolsBonus - regretsPenalty
 						)
 					)
-				} else if (game.stat.level >= 999 && endRollLines >= 16) {
+				} else if (game.stat.level >= 999 && regretsPenalty <= 2 && endRollLines >= 16) {
 					gradeIndex = Math.max(
 						0, 
 						Math.min(
@@ -455,7 +455,7 @@ const updateTIGrade = (game) => {
 							lineRequirementTable.indexOf(line) + coolsBonus - regretsPenalty
 						)
 					)
-				} else if (game.stat.level >= 999 && endRollLines >= 8) {
+				} else if (game.stat.level >= 999 && regretsPenalty <= 3 && endRollLines >= 8) {
 					gradeIndex = Math.max(
 						0, 
 						Math.min(
@@ -463,7 +463,7 @@ const updateTIGrade = (game) => {
 							lineRequirementTable.indexOf(line) + coolsBonus - regretsPenalty
 						)
 					)
-				} else if (game.stat.level >= 999 && endRollLines >= 0) {
+				} else if (game.stat.level >= 999 && regretsPenalty <= 4 && endRollLines >= 0) {
 					gradeIndex = Math.max(
 						0, 
 						Math.min(
@@ -602,7 +602,7 @@ const updateRoundsGrade = (game) => {
 }
 const initMusicProgression = (game) => {
 	  game.musicProgression = 0
-	  if (game.type === "standardx" || game.type === "prox") {
+	  if (game.type === "standardx" || game.type === "prox" || game.type === "frozenx") {
 		  return
 	  }
 	  if (game.settings.rotationSystem === "heboris") {
@@ -611,11 +611,15 @@ const initMusicProgression = (game) => {
 	  if (settings.settings.soundbank === "heboris") {
 		  game.settings.music = ["../heboris/hebo"]
 	  }
-	  if (game.type === "sega" || game.type === "sega2") {
+	  if (game.type === "sega") {
 		  if (segaSkin !== "sega") {
 			  game.settings.music = ["../heboris/hebo"]
 		  }
 	  }
+}
+const tgmFirmDrop = (arg) => {
+	let game = gameHandler.game
+	firmDrop(game, 1, game.piece.gravity < framesToMs(1) && game.piece.isLanded)
 }
 
 export const loops = {
@@ -649,9 +653,7 @@ export const loops = {
       //firmDrop(arg, 1, true);
       //extendedLockdown(arg);
       //classicLockdown(arg);
-	  if (
-		gameHandler.game.type === "normal21"
-		) {
+	  if (gameHandler.game.type === "normal21") {
 		  if (input.getGameDown("specialKey")) {
 			tgmSoftDrop(arg)
 			hardDrop(arg)
@@ -660,9 +662,7 @@ export const loops = {
 			firmDrop(arg, 1, true)
 		  }
 		  extendedLockdown(arg)
-	  } else if (
-		gameHandler.game.type === "normal21world"
-	  ) {
+	  } else if (gameHandler.game.type === "normal21world") {
 		  tgmSoftDrop(arg)
 		  hardDrop(arg)
 		  extendedLockdown(arg)
@@ -679,10 +679,8 @@ export const loops = {
 	  testModeUpdate()
     },
     onInit: (game) => {
-	  if (
-		gameHandler.game.type === "normal21" ||
-		gameHandler.game.type === "normal21world"
-		) {
+	  if (gameHandler.game.type === "normal21" ||
+		gameHandler.game.type === "normal21world") {
 		  game.hold.isDisabled = false
 		  game.next.nextLimit = 6
 	  } else {
@@ -865,7 +863,7 @@ export const loops = {
       }
       gravity(arg)
       sonicDrop(arg, true)
-      firmDrop(arg, 1, game.piece.gravity < framesToMs(1) && game.piece.isLanded)
+      tgmFirmDrop(arg)
       //extendedLockdown(arg);
       classicLockdown(arg)
       if (!arg.piece.inAre) {
@@ -877,7 +875,7 @@ export const loops = {
 		  if (isEndRoll === false) {
 			  isEndRoll = true
 			  game.stack.endRollStart()
-			  if (game.rta <= 600000 && game.stat.line >= 180) {
+			  if (game.rta <= 600000 && game.nonSingleClears >= 180) {
 				game.stack.isHidden = true
 				game.stack.isFading = false
 			  } else {
@@ -1288,9 +1286,7 @@ export const loops = {
       //firmDrop(arg, 1, true)
       //extendedLockdown(arg);
       //classicLockdown(arg)
-	  if (
-		gameHandler.game.type === "normal31"
-		) {
+	  if (gameHandler.game.type === "normal31") {
 		  if (input.getGameDown("specialKey")) {
 			tgmSoftDrop(arg)
 			hardDrop(arg)
@@ -1300,9 +1296,7 @@ export const loops = {
 		  }
 		  extendedLockdown(arg)
 		  game.piece.boneColor = "white"
-	  } else if (
-		gameHandler.game.type === "normal31world"
-	  ) {
+	  } else if (gameHandler.game.type === "normal31world") {
 		  tgmSoftDrop(arg)
 		  hardDrop(arg)
 		  extendedLockdown(arg)
@@ -1326,7 +1320,8 @@ export const loops = {
           if (game.stat.level >= 500 && 
 		  (game.stat.level <= 1000 ||
 		  gameHandler.game.type === "normal31" ||
-		  gameHandler.game.type === "normal31world")) {
+		  gameHandler.game.type === "normal31world")
+		  ) {
 			  arg.stack.addGarbageToCounter(1)
 		  }
         }
@@ -1334,10 +1329,8 @@ export const loops = {
 	  testModeUpdate()
     },
     onInit: (game) => {
-	  if (
-		gameHandler.game.type === "normal31" ||
-		gameHandler.game.type === "normal31world"
-		) {
+	  if (gameHandler.game.type === "normal31" ||
+		gameHandler.game.type === "normal31world") {
 		  game.next.nextLimit = 6
 		  shiraseTargetLevel = 2000
 	  } else {
@@ -1541,7 +1534,7 @@ export const loops = {
       }
       gravity(arg)
       sonicDrop(arg, true)
-      firmDrop(arg, 1, game.piece.gravity < framesToMs(1) && game.piece.isLanded)
+      tgmFirmDrop(arg)
       //extendedLockdown(arg);
       classicLockdown(arg)
       if (!arg.piece.inAre) {
@@ -1553,7 +1546,7 @@ export const loops = {
 		if (isEndRoll === false) {
 			isEndRoll = true
 			game.stack.endRollStart()
-			if (regretsPenalty <= 0 && game.rta <= 600000 && game.stat.line >= 270) {
+			if (regretsPenalty <= 0 && game.rta <= 600000 && game.nonSingleClears >= 240) {
 				game.stack.isHidden = true
 				game.stack.isFading = false
 			} else {
@@ -1989,9 +1982,7 @@ export const loops = {
       //tgmSoftDrop(arg)
       //hardDrop(arg)
       //extendedLockdown(arg)
-	  if (
-		gameHandler.game.type === "normal31"
-		) {
+	  if (gameHandler.game.type === "normal31") {
 		  if (input.getGameDown("specialKey")) {
 			tgmSoftDrop(arg)
 			hardDrop(arg)
@@ -2001,9 +1992,7 @@ export const loops = {
 		  }
 		  extendedLockdown(arg)
 		  game.piece.boneColor = "white"
-	  } else if (
-		gameHandler.game.type === "normal31world"
-	  ) {
+	  } else if (gameHandler.game.type === "normal31world") {
 		  tgmSoftDrop(arg)
 		  hardDrop(arg)
 		  extendedLockdown(arg)
@@ -2035,10 +2024,8 @@ export const loops = {
 	  testModeUpdate()
     },
     onInit: (game) => {
-	  if (
-		gameHandler.game.type === "normal31" ||
-		gameHandler.game.type === "normal31world"
-		) {
+	  if (gameHandler.game.type === "normal31" ||
+		gameHandler.game.type === "normal31world") {
 		  game.next.nextLimit = 6
 		  shiraseTargetLevel = 2000
 	  } else {
@@ -2253,7 +2240,7 @@ export const loops = {
 		if (isEndRoll === false) {
 			isEndRoll = true
 			game.stack.endRollStart()
-			if (regretsPenalty <= 0 && game.rta <= 600000 && game.stat.line >= 270) {
+			if (regretsPenalty <= 0 && game.rta <= 600000 && game.nonSingleClears >= 240) {
 				game.stack.isHidden = true
 				game.stack.isFading = false
 			} else {
@@ -2553,7 +2540,7 @@ export const loops = {
 			game.stack.isFading = true
 			game.stack.endRollStart()
 			rtaGoal = game.rta + 55000
-			if (game.useHeboMusic) {
+			if (game.useHeboMusic !== true) {
 				sound.loadBgm(["ending1"], "arcade")
 				sound.killBgm()
 				sound.playBgm(["ending1"], "arcade")
@@ -2756,7 +2743,7 @@ export const loops = {
 		hardDrop(arg)
       } else {
 		sonicDrop(arg)
-		firmDrop(arg, 1, game.piece.gravity < framesToMs(1) && game.piece.isLanded)
+		tgmFirmDrop(arg)
 	  }
       infiniteLockdown(arg)
       if (!arg.piece.inAre) {
@@ -4191,7 +4178,7 @@ export const loops = {
 	  }
 	  else if (settings.game.ace.arstype === "acears2") {
 		sonicDrop(arg)
-        firmDrop(arg, 1, game.piece.gravity < framesToMs(1) && game.piece.isLanded)
+        tgmFirmDrop(arg)
 	  }
       extendedLockdown(arg)
       if (!arg.piece.inAre) {
@@ -8268,29 +8255,96 @@ export const loops = {
 		  game.stat.level += 1
 	  }
 	  lastPieces = game.stat.piece
-      const x = game.stat.level
-      const gravityEquation = (0.8 - (x - 1) * 0.007) ** (x - 1)
-	  let gravityMultiplier = 500
-	  const difficulty = parseInt(settings.game.sega.difficulty)
+	  let difficulty = parseInt(settings.game.sega.difficulty)
+	  let gravityTable = []
 	  switch (difficulty) {
 		  case 1: {
-			  gravityMultiplier = 750
+			  gravityTable = [
+			  48,
+			  32,
+			  24,
+			  18,
+			  14,
+			  12,
+			  10,
+			  8,
+			  6,
+			  4,
+			  12,
+			  10,
+			  8,
+			  6,
+			  4,
+			  2,
+			  ]
 			  break
 		  }
 		  case 2: {
-			  gravityMultiplier = 500
+			  gravityTable = [
+			  48,
+			  24,
+			  18,
+			  15,
+			  12,
+			  10,
+			  8,
+			  6,
+			  4,
+			  2,
+			  10,
+			  8,
+			  6,
+			  4,
+			  2,
+			  1,
+			  ]
 			  break
 		  }
 		  case 3: {
-			  gravityMultiplier = 300
+			  gravityTable = [
+			  40,
+			  20,
+			  16,
+			  12,
+			  10,
+			  8,
+			  6,
+			  4,
+			  2,
+			  1,
+			  10,
+			  8,
+			  6,
+			  4,
+			  2,
+			  1,
+			  ]
 			  break
 		  }
 		  case 4: {
-			  gravityMultiplier = 150
+			  gravityTable = [
+			  30,
+			  15,
+			  12,
+			  10,
+			  8,
+			  6,
+			  4,
+			  2,
+			  1,
+			  1,
+			  8,
+			  6,
+			  4,
+			  2,
+			  1,
+			  1,
+			  ]
 			  break
 		  }
 	  }
-      game.piece.gravity = Math.max(gravityEquation * gravityMultiplier, framesToMs(1))
+	  let gravityIndex = Math.max(0, Math.min(game.stat.level, gravityTable.length - 1))
+	  game.piece.gravity = framesToMs(gravityTable[gravityIndex])
       game.piece.lockDelayLimit = 500
       updateFallSpeed(game)
 	  game.piece.ghostIsVisible = false
@@ -8346,12 +8400,12 @@ export const loops = {
 	  levelTimer = 0
 	  levelTimerLimit = 58000
 	  lastPieces = 0
-      game.piece.gravity = 500
+      game.piece.gravity = framesToMs(48)
       updateFallSpeed(game)
       game.updateStats()
     },
   },
-  sega2: {
+  newcentury: {
     update: (arg) => {
 	  const game = gameHandler.game
 	  updateSegaBg(game)
@@ -8359,20 +8413,21 @@ export const loops = {
       collapse(arg)
       if (arg.piece.inAre) {
         initialDas(arg)
+        initialRotation(arg)
+        initialHold(arg)
         arg.piece.are += arg.ms
       } else {
         respawnPiece(arg)
-        segaRotate(arg)
+        rotate(arg)
+        rotate180(arg)
         shifting(arg)
       }
       gravity(arg)
-      firmDrop(arg)
-      classicLockdown(arg)
+	  hardDrop(arg)
+      tgmSoftDrop(arg)
+      extendedLockdown(arg)
       lockFlash(arg)
       updateLasts(arg)
-	  if (game.stat.score >= 999999) {
-		  game.stat.score = 999999
-	  }
     },
     onPieceSpawn: (game) => {
       //game.stat.level = Math.floor(game.stat.line / 8)
@@ -8395,65 +8450,89 @@ export const loops = {
 		  game.stat.level += 1
 	  }
 	  lastPieces = game.stat.piece
-      const x = game.stat.level
-	  let gravityDivider = 1 + (game.stat.level / 24)
-      game.piece.gravity = Math.max(framesToMs(1/gravityDivider), framesToMs(1/2))
-      game.piece.lockDelayLimit = 500
+	  let gravityTable = [
+		48,
+		24,
+		18,
+		15,
+		12,
+		10,
+		8,
+		6,
+		4,
+		2,
+		10,
+		8,
+		6,
+		4,
+		2,
+		1,
+		1/2,
+		1/4,
+		1/6,
+		1/8,
+		1/10,
+		1/12,
+		1/15,
+		1/18,
+		1/20,
+	  ]
+	  let gravityIndex = Math.max(0, Math.min(game.stat.level, gravityTable.length - 1))
+	  game.piece.gravity = framesToMs(gravityTable[gravityIndex])
+	  let lockDelayModifier = game.stat.level - gravityTable.length - 1
+	  if (game.stat.level <= gravityTable.length - 1) {
+		  game.piece.lockDelayLimit = 500
+	  } else {
+		  game.piece.lockDelayLimit = 500 - Math.min(300, lockDelayModifier * 10)
+	  }
       updateFallSpeed(game)
-	  game.piece.ghostIsVisible = false
-	  let musicProgressionTable = []
+	  game.piece.ghostIsVisible = true
+	  levelUpdateSega(game)
+	  let musicProgressionTable = [
+        [15, 1],
+        [30, 2],
+        [45, 3],
+      ]
 	  if (game.settings.rotationSystem === "heboris") {
 		  musicProgressionTable = []
 	  }
 	  if (settings.settings.soundbank === "heboris") {
 		  musicProgressionTable = []
 	  }
-	  levelUpdateSega(game)
+	  for (const pair of musicProgressionTable) {
+        const level = pair[0]
+        const entry = pair[1]
+        if (game.stat.level >= level && game.musicProgression < entry) {
+          switch (entry) {
+            case 1:
+			  sound.loadBgm(["newcentury2"], "newcentury")
+              sound.killBgm()
+              sound.playBgm(["newcentury2"], "newcentury")
+              break
+            case 2:
+              sound.loadBgm(["newcentury3"], "newcentury")
+              sound.killBgm()
+              sound.playBgm(["newcentury3"], "newcentury")
+              break
+            case 3:
+              sound.loadBgm(["newcentury4"], "newcentury")
+              sound.killBgm()
+              sound.playBgm(["newcentury4"], "newcentury")
+              break
+          }
+          game.musicProgression = entry
+        }
+      }
     },
     onInit: (game) => {
-	  game.hideGrid = true
-	  game.stack.updateGrid()
       game.lineGoal = null
-      //game.colors = PIECE_COLORS.sega;
-	  segaSkin = "sega"
-	  if (game.settings.rotationSystem === "handheld") {
-		  game.colors = PIECE_COLORS.standard
-		  segaSkin = "handheld"
-	  }
-	  if (game.settings.rotationSystem === "deluxe") {
-		  game.colors = PIECE_COLORS.standard
-		  segaSkin = "deluxe"
-	  }
-	  if (game.settings.rotationSystem === "retro") {
-		  game.colors = PIECE_COLORS.retro
-		  segaSkin = "retro"
-	  }
-	  if (game.settings.rotationSystem === "original") {
-		  game.colors = PIECE_COLORS.original
-		  segaSkin = "bone"
-	  }
-	  game.makeSprite(
-		[
-			"red",
-			"orange",
-			"yellow",
-			"green",
-			"lightBlue",
-			"blue",
-			"purple",
-			"white",
-			"black",
-		],
-		["mino", "stack"],
-		segaSkin
-	  )
 	  initMusicProgression(game)
       game.stat.level = 0
       lastLevel = 0
 	  levelTimer = 0
 	  levelTimerLimit = 58000
 	  lastPieces = 0
-      game.piece.gravity = 500
+      game.piece.gravity = framesToMs(48)
       updateFallSpeed(game)
       game.updateStats()
     },

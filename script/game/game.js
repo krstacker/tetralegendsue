@@ -1125,7 +1125,7 @@ export default class Game {
               hold: game.hold,
               particle: game.particle,
             })
-			if (game.rotationSystem === "arsae" && game.type !== "sega" && game.type !== "sega2") {
+			if (game.rotationSystem === "arsae" && game.type !== "sega") {
 				if (input.getGameDown("specialKey")) {
 					game.piece.areLimit = 0
 					if (game.piece.areLimitLineModifier <= 0) {
@@ -1142,7 +1142,7 @@ export default class Game {
 					}
 				}
 			}
-			if (game.rotationSystem === "drs" && game.type !== "sega" && game.type !== "sega2") {
+			if (game.rotationSystem === "drs" && game.type !== "sega") {
 				if (
 				game.piece.inAre &&
 				(
@@ -1167,7 +1167,7 @@ export default class Game {
 					}
 				}
 			}
-			if (game.rotationSystem === "ds" && game.type !== "sega" && game.type !== "sega2") {
+			if (game.rotationSystem === "ds" && game.type !== "sega") {
 				game.piece.areLimit = 0
 				if (game.piece.areLimitLineModifier <= 0) {
 					game.useFullAreLine = false

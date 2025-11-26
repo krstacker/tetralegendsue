@@ -16,14 +16,6 @@
       "default": true,
       "action": "quick"
     },
-	{
-      "fixedText": true,
-      "label": "Ace",
-      "description": "A marathon mode where clearing 10 lines resets the time limit! Can you reach the goal?",
-      "action": "submenu",
-	  "secretA": true,
-      "submenu": "acemode"
-    },
     {
       "string": "gameStylesOverline",
       "type": "overline"

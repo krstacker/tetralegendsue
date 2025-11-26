@@ -1,12 +1,12 @@
 {
   "properties": {
-    "parent": "acemode",
+    "parent": "ace",
     "langOverride": "mode-options",
-    "game": "ace"
+    "game": "aceworld"
   },
   "data": [
     {
-      "string": "Ace (Classic Rule)",
+      "string": "Ace",
       "fixedText": true,
       "type": "header"
     },
@@ -32,7 +32,7 @@
         }
       ],
       "setting": "lineGoal",
-      "gameName": "ace",
+      "gameName": "aceworld",
       "settingType": "game"
     },
     {
@@ -73,31 +73,7 @@
         }
       ],
       "setting": "difficulty",
-      "gameName": "ace",
-      "settingType": "game"
-    },
-	{
-      "label": "Drop Behavior",
-      "description": "Choose how the pieces drop",
-      "fixedText": true,
-      "type": "select",
-      "action": "select",
-      "selectOptions": [
-        {
-          "label": "Hard Drop",
-		  "description": "",
-          "fixedText": true,
-          "value": "acears"
-        },
-        {
-          "label": "Sonic Drop",
-		  "description": "",
-          "fixedText": true,
-          "value": "acears2"
-        }
-      ],
-      "setting": "arstype",
-      "gameName": "ace",
+      "gameName": "aceworld",
       "settingType": "game"
     }
   ]
