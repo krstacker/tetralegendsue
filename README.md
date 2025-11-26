@@ -1,14 +1,12 @@
-# Tetra Legends Enhanced
-- Tetra Legends Enhanced is an unofficial Tetra Legends expansion built on Tetra Legends Ultimate by Talon125.
-- Play here: https://tetralegendsenhanced.netlify.app/
-- Alternate link if above link doesnt work: https://krstacker.github.io/tetralegendsenhanced/
+# Tetra Legends UE
+- Tetra Legends UE (Unofficial Expansion) is a Tetra Legends fork that adds new content to the game.
+- Play here: https://tetralegendsue.netlify.app/
+- Alternate link if above link doesnt work: https://krstacker.github.io/tetralegendsue/
 
 # Additions
-- Total UI Overhaul
 - New Tetra-X mode [Cold Divinity X]
 - New Arcade modes [Special (TGM2 Master), Novice-TI (TGM3 Easy), Special-TI (TGM3 Master), Sudden-TI (TGM3 Shirase), Pressure (TGM4 Asuka), Rally (TGM4 Konoha), Sudden-AE (TGM4 Master)]
-- New Ace mode [Novice (ACE Normal), Special (ACE HiSpeed), Special 2 (ACE HiSpeed 2), Sudden (ACE Another), Sudden 2 (ACE Another 2)]
-- New Retro mode [Cabinet (Sega)]
+- New Retro mode [Cabinet (System 16)]
 - New Skins [PPT, T99, TOJ, Friends, Party, Pyramidal, DTET, KRS]
 - New Beat mode song [Gas Gas Gas (180BPM)]
 

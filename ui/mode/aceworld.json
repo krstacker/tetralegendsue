@@ -25,6 +25,10 @@
           "string": "linesUnit",
           "replace": ["200"],
           "value": 200
+        },
+		{
+          "string": "endlessOption",
+          "value": -1
         }
       ],
       "setting": "lineGoal",
