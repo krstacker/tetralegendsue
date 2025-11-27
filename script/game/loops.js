@@ -8476,7 +8476,7 @@ export const loops = {
 		1/8,
 		1/10,
 		1/12,
-		1/15,
+		1/16,
 		1/18,
 		1/20,
 	  ]
@@ -8486,7 +8486,7 @@ export const loops = {
 	  if (game.stat.level <= gravityTable.length - 1) {
 		  game.piece.lockDelayLimit = 500
 	  } else {
-		  game.piece.lockDelayLimit = 500 - Math.min(300, lockDelayModifier * 10)
+		  game.piece.lockDelayLimit = 500 - Math.min(250, lockDelayModifier * 5)
 	  }
       updateFallSpeed(game)
 	  game.piece.ghostIsVisible = true
