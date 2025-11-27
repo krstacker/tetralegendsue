@@ -8492,9 +8492,9 @@ export const loops = {
 	  game.piece.ghostIsVisible = true
 	  levelUpdateSega(game)
 	  let musicProgressionTable = [
-        [15, 1],
-        [30, 2],
-        [45, 3],
+        [16, 1],
+        [32, 2],
+        [48, 3],
       ]
 	  if (game.settings.rotationSystem === "heboris") {
 		  musicProgressionTable = []
