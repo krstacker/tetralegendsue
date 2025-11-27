@@ -262,6 +262,9 @@ export default class Piece extends GameModule {
         this.ire = 2
       }
     }
+	if (this.parent.rotationSystem === "sega") {
+		this.ire = 0
+	}
     if (this.ire !== 0) {
       sound.add("initialrotate")
       let ireDirection = ""
