@@ -16,8 +16,6 @@ import arcadeScore from "./loop-modules/arcade-score.js"
 import collapse from "./loop-modules/collapse.js"
 import firmDrop from "./loop-modules/firm-drop.js"
 import tgmSoftDrop from "./loop-modules/tgm-soft-drop.js"
-import krsSoftDrop from "./loop-modules/krs-soft-drop.js"
-import krsHardDrop from "./loop-modules/krs-hard-drop.js"
 import gameHandler from "./game-handler.js"
 import handheldDasAre from "./loop-modules/handheld-das-are.js"
 import hardDrop from "./loop-modules/hard-drop.js"
@@ -119,10 +117,12 @@ const testModeUpdate = () => {
 			testMode = true
 		}
 	}
-	if (testMode === true) {
-		$(".delay-time").classList.add("testmode")
+}
+const updateLockDelay = (game, entry) => {
+	if (testMode === false) {
+		game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
 	} else {
-		$(".delay-time").classList.remove("testmode")
+		game.piece.lockDelayLimit = Math.ceil(framesToMs(Math.max(entry, 30)))
 	}
 }
 const levelUpdateSega = (game) => {
@@ -136,39 +136,6 @@ const levelUpdateSega = (game) => {
   }
   lastLevel = game.stat.level
   return returnValue
-}
-const krsLevelSystem = (game, pieceRequirement) => {
-	let returnValue = false
-	game.stat.level = Math.floor(game.stat.piece / pieceRequirement) + 1
-	if (game.stat.level !== lastLevel) {
-		sound.add("levelup")
-		sound.add("levelupmajor")
-		returnValue = true
-	}
-	lastLevel = game.stat.level
-	return returnValue
-}
-const krsGradingSystem = (
-	game, 
-	gradingTable = [
-		[0, "N/A"],
-	],
-	firstGrade = "N/A",
-) => {
-	for (const pair of gradingTable) {
-        const score = pair[0]
-        const grade = pair[1]
-        if (game.stat.score >= score) {
-			game.stat.grade = grade
-			break
-        }
-    }
-	if (lastGrade !== game.stat.grade && game.stat.grade !== "N/A") {
-		if (game.stat.grade !== firstGrade) {
-			sound.add("gradeup")
-		}
-	}
-	lastGrade = game.stat.grade
 }
 const updateArcadeBg = (game) => {
 	if (game.stat.level >= 1900) {document.getElementById("arcadeBackground").style.setProperty("background-image", `url('bgs/back19.png')`)}
@@ -780,11 +747,7 @@ export const loops = {
         const level = pair[0]
         const entry = pair[1]
         if (game.stat.level < level) {
-          if (testMode === false) {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
-		  } else {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(60))
-		  }
+          updateLockDelay(game, entry)
           break
         }
       }
@@ -1063,14 +1026,10 @@ export const loops = {
         const level = pair[0]
         const entry = pair[1]
         if (game.stat.level < level) {
-          if (testMode === false) {
-			if (isEndRoll) {
-				game.piece.lockDelayLimit = Math.ceil(framesToMs(30))
-			} else {
-				game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
-			}
+		  if (isEndRoll) {
+			updateLockDelay(game, 30)
 		  } else {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(60))
+			updateLockDelay(game, entry)
 		  }
           break
         }
@@ -1443,11 +1402,7 @@ export const loops = {
         const level = pair[0]
         const entry = pair[1]
         if (game.stat.level < level) {
-          if (testMode === false) {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
-		  } else {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(60))
-		  }
+          updateLockDelay(game, entry)
           break
         }
       }
@@ -1708,14 +1663,10 @@ export const loops = {
         const level = pair[0]
         const entry = pair[1]
         if (game.stat.level < level) {
-          if (testMode === false) {
-			if (isEndRoll) {
-				game.piece.lockDelayLimit = Math.ceil(framesToMs(30))
-			} else {
-				game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
-			}
+          if (isEndRoll) {
+			updateLockDelay(game, 30)
 		  } else {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(60))
+			updateLockDelay(game, entry)
 		  }
           break
         }
@@ -2138,11 +2089,7 @@ export const loops = {
         const level = pair[0]
         const entry = pair[1]
         if (game.stat.level < level) {
-          if (testMode === false) {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
-		  } else {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(60))
-		  }
+          updateLockDelay(game, entry)
           break
         }
       }
@@ -2402,14 +2349,10 @@ export const loops = {
         const level = pair[0]
         const entry = pair[1]
         if (game.stat.level < level) {
-          if (testMode === false) {
-			if (isEndRoll) {
-				game.piece.lockDelayLimit = Math.ceil(framesToMs(30))
-			} else {
-				game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
-			}
+          if (isEndRoll) {
+			updateLockDelay(game, 30)
 		  } else {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(60))
+			updateLockDelay(game, entry)
 		  }
           break
         }
@@ -2880,11 +2823,7 @@ export const loops = {
         const level = pair[0]
         const entry = pair[1]
         if (game.stat.level < level) {
-          if (testMode === false) {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
-		  } else {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(60))
-		  }
+          updateLockDelay(game, entry)
           break
         }
       }
@@ -3104,11 +3043,7 @@ export const loops = {
         const level = pair[0]
         const entry = pair[1]
         if (game.stat.level < level) {
-          if (testMode === false) {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
-		  } else {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(60))
-		  }
+          updateLockDelay(game, entry)
           break
         }
       }
@@ -3310,11 +3245,7 @@ export const loops = {
         const level = pair[0]
         const entry = pair[1]
         if (game.stat.level < level) {
-          if (testMode === false) {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
-		  } else {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(60))
-		  }
+          updateLockDelay(game, entry)
           break
         }
       }
@@ -3522,11 +3453,7 @@ export const loops = {
         const level = pair[0]
         const entry = pair[1]
         if (game.stat.level < level) {
-          if (testMode === false) {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
-		  } else {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(60))
-		  }
+          updateLockDelay(game, entry)
           break
         }
       }
@@ -3798,11 +3725,7 @@ export const loops = {
         const level = pair[0]
         const entry = pair[1]
         if (game.stat.level < level) {
-          if (testMode === false) {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
-		  } else {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(60))
-		  }
+          updateLockDelay(game, entry)
           break
         }
       }
@@ -4080,11 +4003,7 @@ export const loops = {
         const level = pair[0]
         const entry = pair[1]
         if (game.stat.level < level) {
-          if (testMode === false) {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
-		  } else {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(60))
-		  }
+          updateLockDelay(game, entry)
           break
         }
       }
@@ -4434,6 +4353,13 @@ export const loops = {
 		[100, 28],
 		[125, 26],
 		[150, 24],
+		[162, 22],
+		[188, 20],
+		[200, 18],
+		[212, 16],
+		[225, 14],
+		[238, 12],
+		[250, 10],
       ]
 	  const lockDelayTableHiSpeed = [
 		[25, 30],
@@ -4442,6 +4368,13 @@ export const loops = {
 		[100, 24],
 		[125, 22],
 		[150, 20],
+		[162, 18],
+		[188, 16],
+		[200, 14],
+		[212, 12],
+		[225, 10],
+		[238, 10],
+		[250, 10],
       ]
 	  const lockDelayTableHiSpeed2 = [
 		[25, 24],
@@ -4450,6 +4383,13 @@ export const loops = {
 		[100, 18],
 		[125, 16],
 		[150, 14],
+		[162, 12],
+		[188, 10],
+		[200, 10],
+		[212, 10],
+		[225, 10],
+		[238, 10],
+		[250, 10],
       ]
 	  const lockDelayTableAnother = [
 		[25, 18],
@@ -4458,6 +4398,13 @@ export const loops = {
 		[100, 12],
 		[125, 10],
 		[150, 10],
+		[162, 10],
+		[188, 10],
+		[200, 10],
+		[212, 10],
+		[225, 10],
+		[238, 10],
+		[250, 10],
       ]
 	  const lockDelayTableAnother2 = [
 		[25, 10],
@@ -4466,64 +4413,51 @@ export const loops = {
 		[100, 10],
 		[125, 10],
 		[150, 10],
+		[162, 10],
+		[188, 10],
+		[200, 10],
+		[212, 10],
+		[225, 10],
+		[238, 10],
+		[250, 10],
       ]
 	  for (const pair of lockDelayTable) {
         const line = pair[0]
         const entry = pair[1]
-        if (game.stat.line < line && difficulty === 1) {
-          if (testMode === false) {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
-		  } else {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(60))
-		  }
+        if (game.stat.line <= line && difficulty === 1) {
+          updateLockDelay(game, entry)
           break
         }
       }
 	  for (const pair of lockDelayTableHiSpeed) {
         const line = pair[0]
         const entry = pair[1]
-        if (game.stat.line < line && difficulty === 2) {
-          if (testMode === false) {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
-		  } else {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(60))
-		  }
+        if (game.stat.line <= line && difficulty === 2) {
+          updateLockDelay(game, entry)
           break
         }
       }
 	  for (const pair of lockDelayTableHiSpeed2) {
         const line = pair[0]
         const entry = pair[1]
-        if (game.stat.line < line && difficulty === 3) {
-          if (testMode === false) {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
-		  } else {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(60))
-		  }
+        if (game.stat.line <= line && difficulty === 3) {
+          updateLockDelay(game, entry)
           break
         }
       }
 	  for (const pair of lockDelayTableAnother) {
         const line = pair[0]
         const entry = pair[1]
-        if (game.stat.line < line && difficulty === 4) {
-          if (testMode === false) {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
-		  } else {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(60))
-		  }
+        if (game.stat.line <= line && difficulty === 4) {
+          updateLockDelay(game, entry)
           break
         }
       }
 	  for (const pair of lockDelayTableAnother2) {
         const line = pair[0]
         const entry = pair[1]
-        if (game.stat.line < line && difficulty >= 5) {
-          if (testMode === false) {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
-		  } else {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(60))
-		  }
+        if (game.stat.line <= line && difficulty >= 5) {
+          updateLockDelay(game, entry)
           break
         }
       }
@@ -5105,6 +5039,13 @@ export const loops = {
 		[100, 28],
 		[125, 26],
 		[150, 24],
+		[162, 22],
+		[188, 20],
+		[200, 18],
+		[212, 16],
+		[225, 14],
+		[238, 12],
+		[250, 10],
       ]
 	  const lockDelayTableHiSpeed = [
 		[25, 30],
@@ -5113,6 +5054,13 @@ export const loops = {
 		[100, 24],
 		[125, 22],
 		[150, 20],
+		[162, 18],
+		[188, 16],
+		[200, 14],
+		[212, 12],
+		[225, 10],
+		[238, 10],
+		[250, 10],
       ]
 	  const lockDelayTableHiSpeed2 = [
 		[25, 24],
@@ -5121,6 +5069,13 @@ export const loops = {
 		[100, 18],
 		[125, 16],
 		[150, 14],
+		[162, 12],
+		[188, 10],
+		[200, 10],
+		[212, 10],
+		[225, 10],
+		[238, 10],
+		[250, 10],
       ]
 	  const lockDelayTableAnother = [
 		[25, 18],
@@ -5129,6 +5084,13 @@ export const loops = {
 		[100, 12],
 		[125, 10],
 		[150, 10],
+		[162, 10],
+		[188, 10],
+		[200, 10],
+		[212, 10],
+		[225, 10],
+		[238, 10],
+		[250, 10],
       ]
 	  const lockDelayTableAnother2 = [
 		[25, 10],
@@ -5137,64 +5099,51 @@ export const loops = {
 		[100, 10],
 		[125, 10],
 		[150, 10],
+		[162, 10],
+		[188, 10],
+		[200, 10],
+		[212, 10],
+		[225, 10],
+		[238, 10],
+		[250, 10],
       ]
 	  for (const pair of lockDelayTable) {
         const line = pair[0]
         const entry = pair[1]
-        if (game.stat.line < line && difficulty === 1) {
-          if (testMode === false) {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
-		  } else {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(60))
-		  }
+        if (game.stat.line <= line && difficulty === 1) {
+          updateLockDelay(game, entry)
           break
         }
       }
 	  for (const pair of lockDelayTableHiSpeed) {
         const line = pair[0]
         const entry = pair[1]
-        if (game.stat.line < line && difficulty === 2) {
-          if (testMode === false) {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
-		  } else {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(60))
-		  }
+        if (game.stat.line <= line && difficulty === 2) {
+          updateLockDelay(game, entry)
           break
         }
       }
 	  for (const pair of lockDelayTableHiSpeed2) {
         const line = pair[0]
         const entry = pair[1]
-        if (game.stat.line < line && difficulty === 3) {
-          if (testMode === false) {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
-		  } else {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(60))
-		  }
+        if (game.stat.line <= line && difficulty === 3) {
+          updateLockDelay(game, entry)
           break
         }
       }
 	  for (const pair of lockDelayTableAnother) {
         const line = pair[0]
         const entry = pair[1]
-        if (game.stat.line < line && difficulty === 4) {
-          if (testMode === false) {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
-		  } else {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(60))
-		  }
+        if (game.stat.line <= line && difficulty === 4) {
+          updateLockDelay(game, entry)
           break
         }
       }
 	  for (const pair of lockDelayTableAnother2) {
         const line = pair[0]
         const entry = pair[1]
-        if (game.stat.line < line && difficulty >= 5) {
-          if (testMode === false) {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(entry))
-		  } else {
-			game.piece.lockDelayLimit = Math.ceil(framesToMs(60))
-		  }
+        if (game.stat.line <= line && difficulty >= 5) {
+          updateLockDelay(game, entry)
           break
         }
       }
@@ -7771,9 +7720,9 @@ export const loops = {
       game.piece.gravity = framesToMs(SPEED_TABLE[calcLevel])
       const DELAY_TABLE = [500, 475, 450, 375, 350, 325, 300, 275, 250, 225]
       game.piece.lockDelayLimit = DELAY_TABLE[calcLevel]
-      let NEXT_TABLE = [6, 5, 4, 3, 2, 1, 1, 1, 1, 1]
+      const NEXT_TABLE = [6, 5, 4, 3, 2, 1, 1, 1, 1, 1]
       game.next.nextLimit = NEXT_TABLE[calcLevel]
-      if (calcLevel >= 3 && !shown20GMessage && game.type === "prox") {
+      if (calcLevel >= 3 && !shown20GMessage) {
         $("#message").textContent = "20G"
         resetAnimation("#message", "dissolve")
         shown20GMessage = true
@@ -7786,18 +7735,6 @@ export const loops = {
         game.useAltMusic = true
         game.hold.isDisabled = true
         game.hold.isDirty = true
-      }
-	  if (calcLevel >= 3 && !shown20GMessage && game.type === "frozenx") {
-        $("#message").textContent = "20G"
-        resetAnimation("#message", "dissolve")
-        shown20GMessage = true
-      }
-	  if (calcLevel >= 5 && !game.useAltMusic && game.type === "frozenx") {
-		if (game.stat.piece > 0) {
-          sound.killBgm()
-          sound.playBgm(game.settings.music[1], game.type)
-        }
-        game.useAltMusic = true
       }
       // if (game.stat.level > 1 && !shownHoldWarning) {
       //   $('#hold-disappear-message').textContent = locale.getString('ui', 'watchOutWarning');
@@ -7813,7 +7750,6 @@ export const loops = {
       shown20GMessage = settings.game.prox.startingLevel > 3 ? true : false
       shownHoldWarning = false
       game.lineGoal = 200
-	  game.useAltMusic = false
       game.stat.level = settings.game.prox.startingLevel
       lastLevel = parseInt(settings.game.prox.startingLevel)
       if (game.type === "frozenx") {
@@ -8503,7 +8439,7 @@ export const loops = {
 	  if (game.stat.level <= gravityTable.length - 1) {
 		  game.piece.lockDelayLimit = 500
 	  } else {
-		  game.piece.lockDelayLimit = 500 - Math.min(250, lockDelayModifier * 5)
+		  game.piece.lockDelayLimit = 500 - Math.min(250, lockDelayModifier * 10)
 	  }
       updateFallSpeed(game)
 	  game.piece.ghostIsVisible = true

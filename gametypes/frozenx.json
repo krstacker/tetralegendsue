@@ -9,7 +9,7 @@
     "rotationSystem": "tetrax",
     "skin": "tetrax",
     "soundbank": "tetrax",
-    "music": ["../cirno/cirno", "../cirno/cirno-last"],
+    "music": "../cirno/cirno",
     "scoreTable": "tetrax",
     "background": "marathon.jpg",
     "isHardMode": true
