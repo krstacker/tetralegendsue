@@ -17,7 +17,7 @@
       "stringDesc": "startingLevelDescription",
       "type": "slider",
       "action": "slider",
-      "max": 10,
+      "max": 15,
       "min": 1,
       "discrete": 1,
       "setting": "startingLevel",

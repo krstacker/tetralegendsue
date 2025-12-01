@@ -7773,7 +7773,7 @@ export const loops = {
       game.stat.level = Math.min(
         10,
         Math.max(
-          settings.game.prox.startingLevel,
+          settings.game.frozenx.startingLevel,
           Math.floor(game.stat.line / 10 + 1)
         )
       )
