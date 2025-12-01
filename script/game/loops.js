@@ -616,10 +616,6 @@ export const loops = {
         shifting(arg)
       }
       gravity(arg)
-      //sonicDrop(arg, true);
-      //firmDrop(arg, 1, true);
-      //extendedLockdown(arg);
-      //classicLockdown(arg);
 	  if (gameHandler.game.type === "normal21") {
 		  if (input.getGameDown("specialKey")) {
 			tgmSoftDrop(arg)
@@ -1241,10 +1237,6 @@ export const loops = {
         shifting(arg)
       }
       gravity(arg)
-      //sonicDrop(arg, true)
-      //firmDrop(arg, 1, true)
-      //extendedLockdown(arg);
-      //classicLockdown(arg)
 	  if (gameHandler.game.type === "normal31") {
 		  if (input.getGameDown("specialKey")) {
 			tgmSoftDrop(arg)
@@ -1930,9 +1922,6 @@ export const loops = {
         shifting(arg)
       }
       gravity(arg)
-      //tgmSoftDrop(arg)
-      //hardDrop(arg)
-      //extendedLockdown(arg)
 	  if (gameHandler.game.type === "normal31") {
 		  if (input.getGameDown("specialKey")) {
 			tgmSoftDrop(arg)
@@ -4816,7 +4805,7 @@ export const loops = {
       game.stat.level = Math.floor(game.stat.line / 10 + 1)
       const x = game.stat.level
       const gravityEquation = (0.8 - (x - 1) * 0.007) ** (x - 1)
-	  let difficulty = parseInt(settings.game.aceworld.difficulty)
+	  let difficulty = parseInt(settings.game.ace.difficulty)
       switch (difficulty) {
 		  case 1: {
 			  if (game.stat.level <= 10) {
@@ -5164,7 +5153,7 @@ export const loops = {
 			  sound.killBgm()
 			  break
 			case 7:
-			  if (settings.game.aceworld.lineGoal >= 0) {
+			  if (settings.game.ace.lineGoal >= 0) {
 				sound.killBgm()
 			  }
 			  break
@@ -5413,7 +5402,7 @@ export const loops = {
 	  }
     },
     onInit: (game) => {
-	  const difficulty = parseInt(settings.game.aceworld.difficulty)
+	  const difficulty = parseInt(settings.game.ace.difficulty)
       switch (difficulty) {
 		  case 1: {
 			  game.settings.music = ["../ace/kachusha-easy"]
@@ -5440,8 +5429,8 @@ export const loops = {
 			  break
 		  }
 	  }
-      if (settings.game.aceworld.lineGoal >= 0) {
-        game.lineGoal = settings.game.aceworld.lineGoal
+      if (settings.game.ace.lineGoal >= 0) {
+        game.lineGoal = settings.game.ace.lineGoal
       }
       game.stat.level = 1
       lastLevel = 1
@@ -7675,18 +7664,6 @@ export const loops = {
       gravity(arg)
       hyperSoftDrop(arg)
       hardDrop(arg)
-	  /*
-      switch (settings.game.prox.lockdownMode) {
-        case "infinity":
-          infiniteLockdown(arg)
-          break
-        case "extended":
-          extendedLockdown(arg)
-          break
-        case "classic":
-          classicLockdown(arg)
-          break
-      }*/
 	  if (gameHandler.game.type === "frozenx") {
 		  extendedLockdown(arg)
 	  } else if (gameHandler.game.type === "prox") {
@@ -7731,7 +7708,7 @@ export const loops = {
         resetAnimation("#message", "dissolve")
         shown20GMessage = true
       }
-      if (calcLevel >= 8 && !game.hold.isDisabled && game.type === "prox") {
+      if (calcLevel >= 8 && !game.hold.isDisabled) {
 		if (game.stat.piece > 0) {
           sound.killBgm()
           sound.playBgm(game.settings.music[1], game.type)
@@ -7746,7 +7723,7 @@ export const loops = {
       levelUpdate(game)
     },
     onInit: (game) => {
-	  if (settings.game.prox.startingLevel - 1 >= 8 && game.type === "prox") {
+	  if (settings.game.prox.startingLevel - 1 >= 8) {
 		  sound.playMenuSe("hardstart4")
 	  } else {
 		  sound.playMenuSe("hardstart3")
@@ -7756,19 +7733,121 @@ export const loops = {
       game.lineGoal = 200
       game.stat.level = settings.game.prox.startingLevel
       lastLevel = parseInt(settings.game.prox.startingLevel)
-      if (game.type === "frozenx") {
-		  game.prefixes.level = "CD"
-	  } else {
-		  game.prefixes.level = "MACH "
-	  }
       game.smallStats.level = true
       game.resize()
       updateFallSpeed(game)
-	  if (game.type === "frozenx") {
-		  game.stack.isFrozen = true
+      game.updateStats()
+    },
+  },
+  frozenx: {
+    update: (arg) => {
+      collapse(arg)
+      if (arg.piece.inAre) {
+        initialDas(arg)
+        initialRotation(arg)
+        initialHold(arg)
+        arg.piece.are += arg.ms
+      } else {
+        respawnPiece(arg)
+        rotate(arg)
+        rotate180(arg)
+        shifting(arg)
+      }
+      gravity(arg)
+      hyperSoftDrop(arg)
+      hardDrop(arg)
+	  if (gameHandler.game.type === "frozenx") {
+		  extendedLockdown(arg)
+	  } else if (gameHandler.game.type === "prox") {
+		  classicLockdown(arg)
 	  } else {
-		  game.stack.isFrozen = false
+		  infiniteLockdown(arg)
 	  }
+      if (!arg.piece.inAre) {
+        hold(arg)
+      }
+      lockFlash(arg)
+      updateLasts(arg)
+    },
+    onPieceSpawn: (game) => {
+      game.stat.level = Math.min(
+        10,
+        Math.max(
+          settings.game.prox.startingLevel,
+          Math.floor(game.stat.line / 10 + 1)
+        )
+      )
+      const calcLevel = game.stat.level - 1
+      const SPEED_TABLE = [
+        1 / 20,
+        1 / 20,
+        1 / 20,
+        1 / 20,
+        1 / 20,
+        1 / 20,
+        1 / 20,
+        1 / 20,
+        1 / 20,
+        1 / 20,
+		1 / 20,
+		1 / 20,
+		1 / 20,
+		1 / 20,
+		1 / 20,
+      ]
+      game.piece.gravity = framesToMs(SPEED_TABLE[calcLevel])
+      const DELAY_TABLE = [
+		500,
+		480,
+		460,
+		440,
+		420,
+		400,
+		380,
+		360,
+		340,
+		320,
+		300,
+		280,
+		260,
+		240,
+		240,
+	  ]
+      game.piece.lockDelayLimit = DELAY_TABLE[calcLevel]
+      const NEXT_TABLE = [
+		6,
+		5,
+		4,
+		3,
+		2,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+	  ]
+      game.next.nextLimit = NEXT_TABLE[calcLevel]
+      levelUpdate(game)
+    },
+    onInit: (game) => {
+      game.lineGoal = 150
+		1 / 20,
+		1 / 20,
+		1 / 20,
+		1 / 20,
+		1 / 20,
+      game.stat.level = settings.game.frozenx.startingLevel
+      lastLevel = parseInt(settings.game.frozenx.startingLevel)
+      game.prefixes.level = "CD"
+      game.smallStats.level = true
+      game.resize()
+      updateFallSpeed(game)
+	  game.stack.isFrozen = true
       game.updateStats()
     },
   },
@@ -8443,7 +8522,7 @@ export const loops = {
 	  if (game.stat.level <= gravityTable.length - 1) {
 		  game.piece.lockDelayLimit = 500
 	  } else {
-		  game.piece.lockDelayLimit = 500 - Math.min(250, lockDelayModifier * 10)
+		  game.piece.lockDelayLimit = 500 - Math.max(0, Math.min(250, lockDelayModifier * 10))
 	  }
       updateFallSpeed(game)
 	  game.piece.ghostIsVisible = true
@@ -8498,7 +8577,6 @@ export const loops = {
     },
   },
 }
-loops.frozenx = loops.prox
 loops.beatx = loops.beat
 loops.beattgm = loops.beat
 loops.normal21 = loops.sudden

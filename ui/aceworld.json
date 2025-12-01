@@ -32,7 +32,7 @@
         }
       ],
       "setting": "lineGoal",
-      "gameName": "aceworld",
+      "gameName": "ace",
       "settingType": "game"
     },
     {
@@ -73,7 +73,7 @@
         }
       ],
       "setting": "difficulty",
-      "gameName": "aceworld",
+      "gameName": "ace",
       "settingType": "game"
     }
   ]

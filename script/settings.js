@@ -1,7 +1,7 @@
 import menu from "./menu/menu.js"
 import sound from "./sound.js"
 import locale from "./lang.js"
-const SETTINGS_VERSION = 6
+const SETTINGS_VERSION = 5
 class Settings {
   constructor() {
     this.defaultSettings = {
@@ -122,7 +122,7 @@ class Settings {
       hold: ["KeyC"],
       retry: ["KeyR"],
       pause: ["Escape"],
-	  testModeKey: ["Pause"],
+	  testModeKey: ["Pause", "F4"],
     }
     this.defaultGame = {
       marathon: {
@@ -157,11 +157,12 @@ class Settings {
       },
 	  standardx: {
 		startingLevel: 1,
-        lockdownMode: "classic",
       },
       prox: {
         startingLevel: 1,
-		lockdownMode: "classic",
+      },
+	  frozenx: {
+        startingLevel: 1,
       },
       handheld: {
         startingLevel: 0,
@@ -185,10 +186,6 @@ class Settings {
         lineGoal: 150,
         difficulty: 1,
 		arstype: "acears",
-      },
-	  aceworld: {
-        lineGoal: 150,
-        difficulty: 1,
       },
     }
     this.settings = {}
