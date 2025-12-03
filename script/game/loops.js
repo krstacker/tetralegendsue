@@ -2353,7 +2353,6 @@ export const loops = {
         [1000, 8],
       ]
 	  let gravityDenominator = 1
-      let gravityDenominator = 1
       let gravityTable = []
 	  if (regretsPenalty <= 0) {
 	  gravityTable = [
