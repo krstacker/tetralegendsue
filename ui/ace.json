@@ -13,7 +13,6 @@
       "string": "aceRuleLabel",
 	  "stringDesc": "aceRuleDescription",
       "langOverride": "ue_additions",
-      "fixedText": true,
       "default": true,
       "action": "submenu",
       "submenu": "mode/ace"

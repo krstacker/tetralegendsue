@@ -108,7 +108,7 @@
     "description": "Displays under 'READY' while the game loads the assets"
   },
   "realTimeAttack": {
-    "message": "RTA: %1",
+    "message": "リアル時間: %1",
     "description": "This label is used to describe the 'real time', as in a timer that does NOT freeze during Entry/Line Delay. %1 is the actual time (i.e. 00:02:41)"
   },
   "inGameTime": {
