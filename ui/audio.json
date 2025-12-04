@@ -214,6 +214,21 @@
       "type": "select",
       "action": "select",
       "selectOptions": [
+		{
+          "label": "[EN] Arachno",
+          "fixedText": true,
+          "value": "arachnoen"
+        },
+		{
+          "label": "[JA] Arachno",
+          "fixedText": true,
+          "value": "arachnoja"
+        },
+		{
+          "label": "[CN] Arachno",
+          "fixedText": true,
+          "value": "arachnocn"
+        },
         {
           "label": "[EN] Ariahivo",
           "fixedText": true,

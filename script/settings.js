@@ -76,13 +76,13 @@ class Settings {
     }
     switch (this.defaultSettings.language) {
       case "en_US":
-        this.defaultSettings.voicebank = "off"
+        this.defaultSettings.voicebank = "arachnoen"
         break
 	  case "zh_CN":
-        this.defaultSettings.voicebank = "off"
+        this.defaultSettings.voicebank = "arachnocn"
         break
       case "ja_JP":
-        this.defaultSettings.voicebank = "nina"
+        this.defaultSettings.voicebank = "arachnojp"
         break
     }
     this.defaultControls = {

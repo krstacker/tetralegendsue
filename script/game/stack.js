@@ -397,28 +397,32 @@ export default class Stack extends GameModule {
       if (!pc) {
         if (isSpin) {
           if (this.parent.b2b > 1) {
-            //sound.add(`voxb2b_${this.parent.piece.name.toLowerCase()}spin`)
+			/*
 			if (this.parent.piece.name.toLowerCase() === "t") {
 				sound.add(`voxb2b_tspin`)
 			} else {
 				sound.add(`voxerase${this.lineClear}`)
 			}
+			*/
+            sound.add(`voxb2b_${this.parent.piece.name.toLowerCase()}spin`)
           } else if (isMini) {
-            //sound.add(`voxmini${this.parent.piece.name.toLowerCase()}spin`)
+            /*
 			if (this.parent.piece.name.toLowerCase() === "t") {
 				sound.add(`voxminitspin`)
 			} else {
 				sound.add(`voxerase${this.lineClear}`)
-			}
+			}*/
+			sound.add(`voxmini${this.parent.piece.name.toLowerCase()}spin`)
           } else {
-            /*sound.add(
-              `vox${this.parent.piece.name.toLowerCase()}spin${this.lineClear}`
-            )*/
+			/*
 			if (this.parent.piece.name.toLowerCase() === "t") {
 				sound.add(`voxtspin${this.lineClear}`)
 			} else {
 				sound.add(`voxerase${this.lineClear}`)
-			}
+			}*/
+            sound.add(
+              `vox${this.parent.piece.name.toLowerCase()}spin${this.lineClear}`
+            )
           }
         } else {
           if (this.parent.b2b > 1 && this.lineClear === 4) {
