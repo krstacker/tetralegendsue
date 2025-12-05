@@ -255,7 +255,7 @@ export default class Game {
 			} else {
 				this.colors = PIECE_COLORS.standard
 				this.stack.flashLineClear = true
-				game.stack.flashClearRate = 200
+				this.stack.flashClearRate = 200
 			}
 		}
 
