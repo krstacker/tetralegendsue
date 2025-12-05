@@ -5101,7 +5101,7 @@ export const SKIN_SETS = {
   tonline: "standard",
   krs: "krs",
   drs: "dtet",
-  heboris: "tap",
+  heboris: "arika",
   toj: "toj",
   party: "party",
 }
