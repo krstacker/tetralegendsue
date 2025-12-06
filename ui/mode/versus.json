@@ -1,6 +1,6 @@
 {
   "properties": {
-    "parent": "guideline",
+    "parent": "root",
     "langOverride": "mode-options",
     "game": "versus",
     "pgmusic": "pg-versus"
