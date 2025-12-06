@@ -7,9 +7,10 @@
     {
       "string": "defaultLabel",
       "stringDesc": "defaultDescription",
-      "fixedText": true,
       "action": "daspreset",
       "isShort": true
+	  "delay": 150,
+      "rate": 17
     },
     {
       "string": "guidelineLabel",
