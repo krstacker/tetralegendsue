@@ -185,6 +185,12 @@
   "garbageCapDescription": {
     "message": "Limit how many broken lines (lines of garbage) may enter the Matrix at a time"
   },
+  "cpuTierLabel": {
+    "message": "CPU Tier"
+  },
+  "cpuTierDescription": {
+    "message": "The skill tier of the CPU"
+  },
   "classicRuleOption": {
     "message": "CLASSIC Rule",
     "description": "Used in some arcade modes"

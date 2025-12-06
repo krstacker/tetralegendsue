@@ -185,6 +185,12 @@
   "garbageCapDescription": {
     "message": "限制每次进入矩阵的断行（垃圾行）数量"
   },
+  "cpuTierLabel": {
+    "message": "CPU 层级"
+  },
+  "cpuTierDescription": {
+    "message": "CPU的性能等级"
+  },
   "classicRuleOption": {
     "message": "Classic 规则",
     "description": "Used in some arcade modes"

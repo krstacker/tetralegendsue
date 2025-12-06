@@ -113,6 +113,12 @@
   "settingsDescription": {
     "message": "在此导入和导出您的设置"
   },
+  "versusLabel": {
+    "message": "对战机器"
+  },
+  "versusDescription": {
+    "message": "与CPU对决！若CPU达到上限，你即获胜。祝你好运！"
+  },
   "footerLabel": {
     "message": ""
   }

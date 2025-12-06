@@ -113,6 +113,12 @@
   "settingsDescription": {
     "message": "設定のインポートとエクスポートはこちらで行ってください"
   },
+    "versusLabel": {
+    "message": "対決マシン"
+  },
+  "versusDescription": {
+    "message": "CPUとの対戦！CPUが上限に達したら、あなたの勝ちです。がんばれ！"
+  },
   "footerLabel": {
     "message": ""
   }

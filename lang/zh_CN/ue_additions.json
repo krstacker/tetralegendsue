@@ -146,12 +146,6 @@
   "masterClassicDescription": {
     "message": "重制前的旧版大师"
   },
-  "versusLabel": {
-    "message": "シラヌイ"
-  },
-  "versusDescription": {
-    "message": "CPUとの対戦！CPUが上限に達したら、あなたの勝ちです。がんばれ！"
-  },
   "footerLabel": {
     "message": ""
   }

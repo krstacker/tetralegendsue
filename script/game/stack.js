@@ -619,7 +619,12 @@ export default class Stack extends GameModule {
       document.documentElement.style.setProperty("--grid-image", "url()")
       return
     }
-    const gridName = settings.settings.gridStyle
+    let gridName = settings.settings.gridStyle
+	if (this.parent.type === "terminal") {
+		gridName = "terminal"
+	} else {
+		gridName = settings.settings.gridStyle
+	}
     if (this.alarmIsOn) {
       document.documentElement.style.setProperty(
         "--grid-image",

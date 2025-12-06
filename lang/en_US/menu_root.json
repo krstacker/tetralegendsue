@@ -113,6 +113,12 @@
   "settingsDescription": {
     "message": "Import and export your settings here"
   },
+  "versusLabel": {
+    "message": "Battle"
+  },
+  "versusDescription": {
+    "message": "Duel against a CPU! If the CPU tops out, you win. Good luck!"
+  },
   "footerLabel": {
     "message": ""
   }

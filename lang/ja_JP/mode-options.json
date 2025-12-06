@@ -185,6 +185,12 @@
   "garbageCapDescription": {
     "message": "一度にマトリックスに入力できる壊れた行（ゴミ行）の数を制限する"
   },
+  "cpuTierLabel": {
+    "message": "CPUティア"
+  },
+  "cpuTierDescription": {
+    "message": "CPUの性能レベル"
+  },
   "classicRuleOption": {
     "message": "CLASSIC RULE",
     "description": "Used in some arcade modes"

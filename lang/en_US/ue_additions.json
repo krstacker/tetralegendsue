@@ -152,12 +152,6 @@
   "masterClassicDescription": {
     "message": "The old version of Master before the rework"
   },
-  "versusLabel": {
-    "message": "Versus"
-  },
-  "versusDescription": {
-    "message": "Duel against a CPU! If the CPU tops out, you win. Good luck!"
-  },
   "footerLabel": {
     "message": ""
   }

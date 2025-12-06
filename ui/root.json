@@ -60,6 +60,12 @@
 	  "width": "half",
       "submenu": "ace"
     },
+	{
+      "string": "versusLabel",
+      "stringDesc": "versusDescription",
+      "action": "submenu",
+      "submenu": "mode/versus"
+    },
     {
       "string": "zenLabel",
       "stringDesc": "zenDescription",

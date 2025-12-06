@@ -1,0 +1,42 @@
+{
+  "properties": {
+    "parent": "guideline",
+    "langOverride": "mode-options",
+    "game": "survival",
+    "pgmusic": "pg-survival"
+  },
+  "data": [
+    {
+      "string": "versusLabel",
+      "langOverride": "menu_root",
+      "type": "header"
+    },
+    {
+      "string": "cpuTierLabel",
+      "stringDesc": "cpuTierDescription",
+      "type": "select",
+      "action": "select",
+      "selectOptions": [
+        {
+          "string": "beginnerDifOption",
+          "value": 1
+        },
+        {
+          "string": "intermediateDifOption",
+          "value": 2
+        },
+        {
+          "string": "expertDifOption",
+          "value": 3
+        },
+        {
+          "string": "proDifOption",
+          "value": 4
+        }
+      ],
+      "setting": "cpuTier",
+      "gameName": "versus",
+      "settingType": "game"
+    }
+  ]
+}

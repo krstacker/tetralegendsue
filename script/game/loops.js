@@ -8938,19 +8938,42 @@ export const loops = {
         rotate180(arg)
         shifting(arg)
       }
+	  let garbageAttacks = []
+	  switch parseInt(game.cpuTier) {
+		  case 1:
+			garbageAttacks = [2, 4, 5]
+			break
+		  case 2:
+			garbageAttacks = [4, 5, 6, 7]
+			break
+		  case 3:
+			garbageAttacks = [4, 5, 6, 7, 10]
+			break
+		  case 4:
+			garbageAttacks = [4, 5, 6, 7, 10]
+			break
+	  }
       if (
         arg.piece.startingAre >= arg.piece.startingAreLimit &&
         game.marginTime >= game.marginTimeLimit
       ) {
         garbageTimer += arg.ms
-        if (garbageTimer > 16.667) {
-          garbageTimer -= 16.667
-          const randomCheck = Math.floor(Math.random() * 100000) / 100
-          if (randomCheck < game.garbageRate) {
-            arg.stack.addGarbageToCounter(1)
-          }
+        if (garbageTimer > game.garbageInterval) {
+          garbageTimer -= game.garbageInterval
+          if (!game.openerUsed) {
+			  game.openerUsed = true
+			  game.stack.addGarbageToCounter(game.openerGarbage)
+		  } else {
+			  game.stack.addGarbageToCounter(garbageAttacks[
+			  Math.max(0, Math.floor(Math.random() * garbageAttacks.length) - 1)
+			  ])
+		  }
         }
       }
+	  if (game.stack.waitingGarbage < 0) {
+		  game.cpuGarbage -= game.stack.waitingGarbage
+		  game.stack.waitingGarbage = 0
+	  }
       gravity(arg)
       softDrop(arg, 70)
       hardDrop(arg)
@@ -8966,7 +8989,7 @@ export const loops = {
       ) {
         game.marginTime += arg.ms
       }
-	  if (game.cpuGarbage >= 12) {
+	  if (game.cpuGarbage >= 20) {
 		$("#kill-message").textContent = locale.getString("ui", "excellent")
         sound.killVox()
         sound.add("voxexcellent")
@@ -8985,9 +9008,31 @@ export const loops = {
       game.piece.xSpawnOffset = 0
       game.resize()
 	  game.cpuTier = settings.game.versus.cpuTier
+	  game.openerUsed = false
+	  game.openerGarbage = 0
+	  game.garbageInterval = 0
+	  switch parseInt(game.cpuTier) {
+		  case 1:
+			game.openerGarbage = 2
+			game.garbageInterval = 8*1000
+			break
+		  case 2:
+			game.openerGarbage = 4
+			game.garbageInterval = 6*1000
+			break
+		  case 3:
+			game.openerGarbage = 6
+			game.garbageInterval = 4*1000
+			break
+		  case 4:
+			game.openerGarbage = 10
+			game.garbageInterval = 2*1000
+			break
+	  }
 	  game.cpuGarbage = 0
 	  game.cpuGarbageCounter = 0
-      game.stack.antiGarbageBuffer = 0
+      game.stack.antiGarbageBuffer = -20
+	  game.copyBottomForGarbage = false
       game.garbageRate = 0
       game.marginTime = 0
       game.marginTimeLimit = 5000

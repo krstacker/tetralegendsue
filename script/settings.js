@@ -161,6 +161,12 @@ class Settings {
         lineGoal: 150,
         difficulty: 1,
       },
+	  terminal: {
+        startingLevel: 0,
+      },
+	  versus: {
+        cpuTier: 1,
+      },
     }
     this.settings = {}
     this.controls = {}
