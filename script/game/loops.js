@@ -8939,7 +8939,7 @@ export const loops = {
         shifting(arg)
       }
 	  let garbageAttacks = []
-	  switch parseInt(game.cpuTier) {
+	  switch (game.cpuTier) {
 		  case 1:
 			garbageAttacks = [2, 4, 5]
 			break
