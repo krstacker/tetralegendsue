@@ -8964,13 +8964,13 @@ export const loops = {
 			  game.stack.addGarbageToCounter(game.openerGarbage)
 		  } else {
 			  game.stack.addGarbageToCounter(garbageAttacks[
-			  Math.max(0, Math.floor(Math.random() * garbageAttacks.length) - 1)
+			  Math.max(0, Math.floor(Math.random() * garbageAttacks.length) - 1) - game.cpuGarbageCounter
 			  ])
 		  }
         }
       }
 	  if (game.stack.waitingGarbage < 0) {
-		  game.cpuGarbage -= game.stack.waitingGarbage
+		  game.cpuGarbageCounter -= game.stack.waitingGarbage
 		  game.stack.waitingGarbage = 0
 	  }
       gravity(arg)
@@ -9006,7 +9006,7 @@ export const loops = {
 		  game.piece.areLimitLineModifier = 166.666666667
 	  }
 	  game.updateStats()
-	  game.cpuGarbage = game.cpuGarbageCounter
+	  game.cpuGarbage += game.cpuGarbageCounter
 	  game.cpuGarbageCounter = 0
 	},
     onInit: (game) => {
