@@ -1351,8 +1351,8 @@ export const loops = {
         [401, 18],
 		[601, 14],
 		[801, 12],
-        [1001, 10],
-		[1201, 10],
+        [1001, 8],
+		[1201, 8],
       ]
       let musicProgressionTable = [
         [479, 1],
@@ -2116,8 +2116,8 @@ export const loops = {
         [401, 18],
 		[601, 14],
 		[801, 12],
-        [1001, 10],
-		[1201, 10],
+        [1001, 8],
+		[1201, 8],
       ]
       let musicProgressionTable = [
         [479, 1],
@@ -4286,7 +4286,16 @@ export const loops = {
       */
     },
     onPieceSpawn: (game) => {
-      game.stat.level = Math.floor(game.stat.line / 10 + 1)
+	  let lastLevel = 15
+	  if (settings.game.ace.lineGoal >= 0) {
+		  lastLevel = 99
+	  } else {
+		  lastLevel = settings.game.ace.lineGoal / 10
+	  }
+      game.stat.level = Math.min(
+		Math.floor(game.stat.line / 10 + 1),
+		lastLevel
+	  )
       const x = game.stat.level
 	  const difficulty = parseInt(settings.game.ace.difficulty)
 	  let gravityTable = []
@@ -4536,7 +4545,17 @@ export const loops = {
 		[240, 14],
 		[250, 12],
 		[260, 10],
-		[1000, 10],
+		[300, 10],
+		[310, 9],
+		[320, 8],
+		[330, 7],
+		[340, 6],
+		[350, 5],
+		[360, 4],
+		[370, 3],
+		[380, 2],
+		[390, 1],
+		[1000, 1],
       ]
 	  const lockDelayTableHiSpeed = [
 		[25, 30],
@@ -4552,7 +4571,17 @@ export const loops = {
 		[240, 10],
 		[250, 10],
 		[260, 10],
-		[1000, 10],
+		[300, 10],
+		[310, 9],
+		[320, 8],
+		[330, 7],
+		[340, 6],
+		[350, 5],
+		[360, 4],
+		[370, 3],
+		[380, 2],
+		[390, 1],
+		[1000, 1],
       ]
 	  const lockDelayTableHiSpeed2 = [
 		[25, 24],
@@ -4568,7 +4597,17 @@ export const loops = {
 		[240, 10],
 		[250, 10],
 		[260, 10],
-		[1000, 10],
+		[300, 10],
+		[310, 9],
+		[320, 8],
+		[330, 7],
+		[340, 6],
+		[350, 5],
+		[360, 4],
+		[370, 3],
+		[380, 2],
+		[390, 1],
+		[1000, 1],
       ]
 	  const lockDelayTableAnother = [
 		[25, 18],
@@ -4579,7 +4618,17 @@ export const loops = {
 		[150, 10],
 		[200, 10],
 		[260, 10],
-		[1000, 10],
+		[300, 10],
+		[310, 9],
+		[320, 8],
+		[330, 7],
+		[340, 6],
+		[350, 5],
+		[360, 4],
+		[370, 3],
+		[380, 2],
+		[390, 1],
+		[1000, 1],
       ]
 	  const lockDelayTableAnother2 = [
 		[25, 10],
@@ -4590,7 +4639,17 @@ export const loops = {
 		[150, 10],
 		[200, 10],
 		[260, 10],
-		[1000, 10],
+		[300, 10],
+		[310, 9],
+		[320, 8],
+		[330, 7],
+		[340, 6],
+		[350, 5],
+		[360, 4],
+		[370, 3],
+		[380, 2],
+		[390, 1],
+		[1000, 1],
       ]
 	  for (const pair of lockDelayTable) {
         const line = pair[0]
@@ -4981,7 +5040,16 @@ export const loops = {
       */
     },
     onPieceSpawn: (game) => {
-	  game.stat.level = Math.floor(game.stat.line / 10 + 1)
+	  let lastLevel = 15
+	  if (settings.game.ace.lineGoal >= 0) {
+		  lastLevel = 99
+	  } else {
+		  lastLevel = settings.game.ace.lineGoal / 10
+	  }
+      game.stat.level = Math.min(
+		Math.floor(game.stat.line / 10 + 1),
+		lastLevel
+	  )
       const x = game.stat.level
 	  const difficulty = parseInt(settings.game.ace.difficulty)
 	  let gravityTable = []
@@ -5231,7 +5299,17 @@ export const loops = {
 		[240, 14],
 		[250, 12],
 		[260, 10],
-		[1000, 10],
+		[300, 10],
+		[310, 9],
+		[320, 8],
+		[330, 7],
+		[340, 6],
+		[350, 5],
+		[360, 4],
+		[370, 3],
+		[380, 2],
+		[390, 1],
+		[1000, 1],
       ]
 	  const lockDelayTableHiSpeed = [
 		[25, 30],
@@ -5247,7 +5325,17 @@ export const loops = {
 		[240, 10],
 		[250, 10],
 		[260, 10],
-		[1000, 10],
+		[300, 10],
+		[310, 9],
+		[320, 8],
+		[330, 7],
+		[340, 6],
+		[350, 5],
+		[360, 4],
+		[370, 3],
+		[380, 2],
+		[390, 1],
+		[1000, 1],
       ]
 	  const lockDelayTableHiSpeed2 = [
 		[25, 24],
@@ -5263,7 +5351,17 @@ export const loops = {
 		[240, 10],
 		[250, 10],
 		[260, 10],
-		[1000, 10],
+		[300, 10],
+		[310, 9],
+		[320, 8],
+		[330, 7],
+		[340, 6],
+		[350, 5],
+		[360, 4],
+		[370, 3],
+		[380, 2],
+		[390, 1],
+		[1000, 1],
       ]
 	  const lockDelayTableAnother = [
 		[25, 18],
@@ -5274,7 +5372,17 @@ export const loops = {
 		[150, 10],
 		[200, 10],
 		[260, 10],
-		[1000, 10],
+		[300, 10],
+		[310, 9],
+		[320, 8],
+		[330, 7],
+		[340, 6],
+		[350, 5],
+		[360, 4],
+		[370, 3],
+		[380, 2],
+		[390, 1],
+		[1000, 1],
       ]
 	  const lockDelayTableAnother2 = [
 		[25, 10],
@@ -5285,7 +5393,17 @@ export const loops = {
 		[150, 10],
 		[200, 10],
 		[260, 10],
-		[1000, 10],
+		[300, 10],
+		[310, 9],
+		[320, 8],
+		[330, 7],
+		[340, 6],
+		[350, 5],
+		[360, 4],
+		[370, 3],
+		[380, 2],
+		[390, 1],
+		[1000, 1],
       ]
 	  for (const pair of lockDelayTable) {
         const line = pair[0]
