@@ -7715,7 +7715,7 @@ export const loops = {
 	  game.piece.gravity = framesToMs(gravityTable[gravityIndex])
       if (game.stat.level >= 30) {
         game.piece.lockDelayLimit = ~~framesToMs(
-          30 * Math.pow(0.93, Math.pow(game.stat.level - 40, 0.8))
+          30 * Math.pow(0.93, Math.pow(game.stat.level - 30, 0.8))
         )
       } else {
         game.piece.lockDelayLimit = 500
@@ -7746,7 +7746,220 @@ export const loops = {
       game.updateStats()
     },
   },
+  standardxclassic: {
+    update: (arg) => {
+      collapse(arg)
+      if (arg.piece.inAre) {
+        initialDas(arg)
+        initialRotation(arg)
+        initialHold(arg)
+        arg.piece.are += arg.ms
+      } else {
+        respawnPiece(arg)
+        rotate(arg)
+        rotate180(arg)
+        shifting(arg)
+      }
+      gravity(arg)
+      hyperSoftDrop(arg)
+      hardDrop(arg)
+      /*switch (settings.game.standardx.lockdownMode) {
+        case "infinity":
+          infiniteLockdown(arg)
+          break
+        case "extended":
+          extendedLockdown(arg)
+          break
+        case "classic":
+          classicLockdown(arg)
+          break
+      }*/
+	  classicLockdown(arg)
+      if (!arg.piece.inAre) {
+        hold(arg)
+      }
+      lockFlash(arg)
+      updateLasts(arg)
+    },
+    onPieceSpawn: (game) => {
+      game.stat.level = Math.max(
+		settings.game.standardx.startingLevel,
+		Math.floor(game.stat.line / 10 + 1)
+	  )
+	  const x = game.stat.level
+      const gravityEquation = (0.9 - (x - 1) * 0.001) ** (x - 1)
+      game.piece.gravity = Math.max(gravityEquation * 1000, framesToMs(1 / 20))
+      if (game.stat.level >= 40) {
+        game.piece.lockDelayLimit = ~~framesToMs(
+          40 * Math.pow(0.93, Math.pow(game.stat.level - 40, 0.8))
+        )
+      } else {
+        game.piece.lockDelayLimit = 500
+      }
+      updateFallSpeed(game)
+      levelUpdate(game)
+    },
+    onInit: (game) => {
+      game.stat.level = settings.game.standardx.startingLevel
+      lastLevel = parseInt(settings.game.standardx.startingLevel)
+      game.piece.gravity = 1000
+      updateFallSpeed(game)
+      game.updateStats()
+    },
+  },
   survival: {
+    update: (arg) => {
+      const game = gameHandler.game
+
+      collapse(arg)
+      if (arg.piece.inAre) {
+        initialDas(arg)
+        initialRotation(arg)
+        initialHold(arg)
+        arg.piece.are += arg.ms
+      } else {
+        respawnPiece(arg)
+        rotate(arg)
+        rotate180(arg)
+        shifting(arg)
+      }
+      if (
+        arg.piece.startingAre >= arg.piece.startingAreLimit &&
+        game.marginTime >= game.marginTimeLimit
+      ) {
+        garbageTimer += arg.ms
+        if (garbageTimer > 16.667) {
+          garbageTimer -= 16.667
+          const randomCheck = Math.floor(Math.random() * 100000) / 100
+          if (randomCheck < game.garbageRate) {
+            arg.stack.addGarbageToCounter(1)
+          }
+        }
+      }
+      gravity(arg)
+      softDrop(arg, 70)
+      hardDrop(arg)
+      extendedLockdown(arg)
+      if (!arg.piece.inAre) {
+        hold(arg)
+      }
+      lockFlash(arg)
+      updateLasts(arg)
+      /*
+	  game.stat.level = Math.max(
+        settings.game.survival.startingLevel,
+        Math.floor(game.timePassed / 10000 + 1)
+      )
+	  game.stat.level = Math.max(
+        settings.game.survival.startingLevel,
+        Math.floor(game.stat.line / 10 + 1)
+      )
+      const x = game.stat.level
+      const gravityEquation = (0.99 - (x - 1) * 0.007) ** (x - 1)
+      game.piece.gravity = Math.max(gravityEquation * 1000, framesToMs(1 / 20))
+	  */
+	  const x = game.stat.level
+      const gravityEquation = (0.8 - (x - 1) * 0.007) ** (x - 1)
+      game.piece.gravity = Math.max(gravityEquation * 1000, framesToMs(1 / 20))
+      game.piece.lockDelayLimit = 500
+	  game.garbageRate =
+        x ** game.garbageRateExponent * game.garbageRateMultiplier +
+        game.garbageRateAdditive
+      if (levelUpdate(game)) {
+        game.updateStats()
+      }
+      if (
+        arg.piece.startingAre >= arg.piece.startingAreLimit &&
+        game.marginTime < game.marginTimeLimit
+      ) {
+        game.marginTime += arg.ms
+      }
+    },
+    onPieceSpawn: (game) => {},
+    onInit: (game) => {
+      // if (settings.game.survival.matrixWidth === "standard") {
+      //   game.settings.width = 10
+      //   game.stack.width = 10
+      //   game.stack.new()
+      //   game.piece.xSpawnOffset = 0
+      //   game.resize()
+      // }
+      switch (settings.game.survival.matrixWidth) {
+        // case 4:
+        //   game.settings.width = 4
+        //   game.stack.width = 4
+        //   game.stack.new()
+        //   game.piece.xSpawnOffset = -3
+        //   game.resize()
+        //   break
+        case 5:
+          game.settings.width = 5
+          game.stack.width = 5
+          game.stack.new()
+          game.piece.xSpawnOffset = -3
+          game.resize()
+          break
+        case 6:
+          game.settings.width = 6
+          game.stack.width = 6
+          game.stack.new()
+          game.piece.xSpawnOffset = -2
+          game.resize()
+          break
+        case 7:
+          game.settings.width = 7
+          game.stack.width = 7
+          game.stack.new()
+          game.piece.xSpawnOffset = -2
+          game.resize()
+          break
+        case 8:
+          game.settings.width = 8
+          game.stack.width = 8
+          game.stack.new()
+          game.piece.xSpawnOffset = -1
+          game.resize()
+          break
+        case 9:
+          game.settings.width = 9
+          game.stack.width = 9
+          game.stack.new()
+          game.piece.xSpawnOffset = -1
+          game.resize()
+          break
+        case 10:
+          game.settings.width = 10
+          game.stack.width = 10
+          game.stack.new()
+          game.piece.xSpawnOffset = 0
+          game.resize()
+          break
+      }
+      let difficulty = settings.game.survival.difficulty
+      game.garbageRateExponent = [1.91, 1.95, 1.97, 2, 2.03, 2.07, 2.1][
+        difficulty
+      ]
+      game.garbageRateMultiplier = [0.005, 0.01, 0.02, 0.03, 0.05, 0.08, 0.1][
+        difficulty
+      ]
+      game.garbageRateAdditive = [1, 1.5, 2, 2.5, 9, 18, 35][difficulty]
+      game.stack.garbageSwitchRate = [1, 1, 8, 4, 2, 1, 1][difficulty]
+      game.stack.antiGarbageBuffer = [-20, -10, -8, -6, -4, -2, 0][difficulty]
+      if (difficulty <= 1) {
+        game.stack.copyBottomForGarbage = true
+      }
+      game.garbageRate = 0
+      game.marginTime = 0
+      game.marginTimeLimit = 5000
+      garbageTimer = 0
+      game.stat.level = settings.game.survival.startingLevel
+      lastLevel = parseInt(settings.game.survival.startingLevel)
+      game.piece.gravity = 1000
+      updateFallSpeed(game)
+      game.updateStats()
+    },
+  },
+  survivalclassic: {
     update: (arg) => {
       const game = gameHandler.game
 

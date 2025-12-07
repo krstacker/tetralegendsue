@@ -146,6 +146,18 @@
   "masterClassicDescription": {
     "message": "The old version of Master before the rework"
   },
+  "survivalClassicLabel": {
+    "message": "Survival Legacy"
+  },
+  "survivalClassicDescription": {
+    "message": "The old version of Survival before the rework"
+  },
+  "standardXClassicLabel": {
+    "message": "Standard Legacy"
+  },
+  "standardXClassicDescription": {
+    "message": "The old version of Standard before the rework"
+  },
   "footerLabel": {
     "message": ""
   }

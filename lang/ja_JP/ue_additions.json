@@ -146,6 +146,18 @@
   "masterClassicDescription": {
     "message": "リワーク前の旧マスター版"
   },
+  "survivalClassicLabel": {
+    "message": "サバイバルレガシー"
+  },
+  "survivalClassicDescription": {
+    "message": "リワーク前の旧バージョンのサバイバル"
+  },
+  "standardXClassicLabel": {
+    "message": "標準レガシー"
+  },
+  "standardXClassicDescription": {
+    "message": "リワーク前の旧バージョンのスタンダード"
+  },
   "footerLabel": {
     "message": ""
   }

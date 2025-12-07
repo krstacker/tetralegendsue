@@ -146,6 +146,18 @@
   "masterClassicDescription": {
     "message": "重制前的旧版大师"
   },
+  "survivalClassicLabel": {
+    "message": "生存遗产"
+  },
+  "survivalClassicDescription": {
+    "message": "重制前的旧版《生存》"
+  },
+  "standardXClassicLabel": {
+    "message": "标准遗产"
+  },
+  "standardXClassicDescription": {
+    "message": "重制前的旧版标准"
+  },
   "footerLabel": {
     "message": ""
   }

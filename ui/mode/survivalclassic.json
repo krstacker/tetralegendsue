@@ -1,0 +1,77 @@
+{
+  "properties": {
+    "parent": "guideline",
+    "langOverride": "mode-options",
+    "game": "survival",
+    "pgmusic": "pg-survivalclassic"
+  },
+  "data": [
+    {
+      "string": "survivalClassicLabel",
+      "langOverride": "ue_additions",
+      "type": "header"
+    },
+    {
+      "string": "startingLevelLabel",
+      "stringDesc": "startingLevelDescription",
+      "type": "slider",
+      "action": "slider",
+      "max": 30,
+      "min": 1,
+      "discrete": 1,
+      "setting": "startingLevel",
+      "gameName": "survival",
+      "settingType": "game"
+    },
+    {
+      "string": "difficultyLabel",
+      "stringDesc": "difficultyDescription",
+      "type": "select",
+      "action": "select",
+      "selectOptions": [
+        {
+          "string": "beginnerDifOption",
+          "value": 0
+        },
+        {
+          "string": "veryEasyDifOption",
+          "value": 1
+        },
+        {
+          "string": "easyDifOption",
+          "value": 2
+        },
+        {
+          "string": "intermediateDifOption",
+          "value": 3
+        },
+        {
+          "string": "hardDifOption",
+          "value": 4
+        },
+        {
+          "string": "expertDifOption",
+          "value": 5
+        },
+        {
+          "string": "proDifOption",
+          "value": 6
+        }
+      ],
+      "setting": "difficulty",
+      "gameName": "survival",
+      "settingType": "game"
+    },
+    {
+      "string": "garbageCapLabel",
+      "stringDesc": "garbageCapDescription",
+      "type": "slider",
+      "action": "slider",
+      "max": 40,
+      "min": 1,
+      "discrete": 1,
+      "setting": "brokenLineLimit",
+      "settingType": "setting"
+    }
+  ]
+}
