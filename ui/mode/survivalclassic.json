@@ -2,7 +2,7 @@
   "properties": {
     "parent": "guideline",
     "langOverride": "mode-options",
-    "game": "survival",
+    "game": "survivalclassic",
     "pgmusic": "pg-survivalclassic"
   },
   "data": [
