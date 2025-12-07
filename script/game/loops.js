@@ -7850,17 +7850,13 @@ export const loops = {
         settings.game.survival.startingLevel,
         Math.floor(game.timePassed / 10000 + 1)
       )
-	  game.stat.level = Math.max(
-        settings.game.survival.startingLevel,
-        Math.floor(game.stat.line / 10 + 1)
-      )
       const x = game.stat.level
       const gravityEquation = (0.99 - (x - 1) * 0.007) ** (x - 1)
       game.piece.gravity = Math.max(gravityEquation * 1000, framesToMs(1 / 20))
 	  */
 	  game.stat.level = Math.max(
         settings.game.survival.startingLevel,
-        Math.floor(game.stat.line / 10 + 1)
+        Math.floor(game.timePassed / 10000 + 1)
       )
 	  const x = game.stat.level
       const gravityEquation = (0.8 - (x - 1) * 0.007) ** (x - 1)
