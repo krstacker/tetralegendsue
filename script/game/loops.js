@@ -78,6 +78,8 @@ let coolsBonus = 0
 let coolPacing = 50
 let shiraseTargetLevel = 1300
 let segaSkin = "sega"
+let openerAttacks = []
+let openerIndex = 0
 let bpm
 const levelUpdate = (game) => {
   let returnValue = false
@@ -9028,8 +9030,6 @@ export const loops = {
 	  game.openerUsed = false
 	  game.openerGarbage = 0
 	  game.garbageInterval = 0
-	  let openerAttacks = [2, 4, 6, 10, 12, 15]
-	  let openerIndex = Math.max(0, Math.floor(Math.random() * openerAttacks.length) - 1)
 	  switch (game.cpuTier) {
 		  case 1:
 			openerAttacks = [2, 4]
