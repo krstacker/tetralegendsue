@@ -1090,7 +1090,7 @@ export default class Stack extends GameModule {
         ) {
           flashCtx.fillRect(x, Math.floor(y), cellSize, cellSize)
         }
-        if (settings.settings.lockFlash === "shine") {
+        if (settings.settings.lockFlash === "shine" && this.parent.piece.useBoneBlocks !== true) {
           const float = (this.flashTime * 2) / this.flashLimit
           const mod = 0.2
           const getDistanceX = (modifier = 0) => {
