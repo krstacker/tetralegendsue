@@ -2966,7 +2966,11 @@ export const loops = {
         const level = pair[0]
         const entry = pair[1]
         if (game.stat.level < level) {
-		  game.piece.areLimit = framesToMs(entry)
+		  if (input.getGameDown("specialKey")) {
+			  game.piece.areLimit = 0
+		  } else {
+			  game.piece.areLimit = framesToMs(entry)
+		  }
           break
         }
       }
@@ -2982,7 +2986,11 @@ export const loops = {
         const level = pair[0]
         const entry = pair[1]
         if (game.stat.level < level) {
-          game.piece.areLimitLineModifier = framesToMs(entry)
+          if (input.getGameDown("specialKey")) {
+			  game.piece.areLimitLineModifier = game.piece.areLineLimit - framesToMs(entry)
+		  } else {
+			  game.piece.areLimitLineModifier = framesToMs(entry)
+		  }
           break
         }
       }

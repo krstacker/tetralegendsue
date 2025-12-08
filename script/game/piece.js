@@ -126,11 +126,13 @@ export default class Piece extends GameModule {
       }
     }
     this.parent.onPieceSpawn(this.parent)
+	/*
 	if (game.rotationSystem === "arsae") {
 		if (game.cachedAre > 0 && input.getGameDown("specialKey") === false) {
 			game.piece.areLimit = game.cachedAre
 		}
 	}
+	*/
 	if (game.rotationSystem === "drs") {
 		if (game.cachedAre > 0) {
 			game.piece.areLimit = game.cachedAre

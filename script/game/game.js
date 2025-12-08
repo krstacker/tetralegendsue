@@ -1128,7 +1128,7 @@ export default class Game {
               hold: game.hold,
               particle: game.particle,
             })
-			if (game.rotationSystem === "arsae" && game.type !== "sega") {
+			/*if (game.rotationSystem === "arsae" && game.type !== "sega") {
 				if (input.getGameDown("specialKey")) {
 					game.piece.areLimit = 0
 					if (game.piece.areLimitLineModifier <= 0) {
@@ -1144,7 +1144,7 @@ export default class Game {
 						game.cachedAre = game.piece.areLimit
 					}
 				}
-			}
+			}*/
 			if (game.rotationSystem === "drs" && game.type !== "sega") {
 				if (
 				game.piece.inAre &&
