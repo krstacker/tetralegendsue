@@ -82,6 +82,8 @@ export default class Piece extends GameModule {
     this.lastSpinDirection = null
 	this.useBoneBlocks = false
 	this.boneColor = "green"
+	this.isCyclone = false
+	this.cycloneOrientation = 0
   }
   new(name = this.parent.next.next()) {
     this.isFrozen = false
@@ -150,7 +152,20 @@ export default class Piece extends GameModule {
     this.hasHardDropped = false
     this.lockDelay = 0
     this.name = name
-    this.orientation = INITIAL_ORIENTATION[rotSys][name]
+	if (this.isCyclone) {
+		this.orientation = this.cycloneOrientation
+	} else {
+		this.orientation = INITIAL_ORIENTATION[rotSys][name]
+	}
+	let cycloneOrientationTable = [
+		0,
+		1,
+		2,
+		3,
+	]
+	let cycloneOrientationIndex = Math.max(0, Math.floor(Math.random() * cycloneOrientationTable.length) - 1)
+	this.cycloneOrientation = cycloneOrientationTable[cycloneOrientationIndex]
+	this.parent.next.isDirty = true
 
     let backUpRotSys = rotSys
 

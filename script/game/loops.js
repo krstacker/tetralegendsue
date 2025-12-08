@@ -3937,6 +3937,11 @@ export const loops = {
           game.musicProgression = entry
         }
       }
+	  if (game.stat.level >= 1000) {
+		  game.piece.isCyclone = true
+	  } else {
+		  game.piece.isCyclone = false
+	  }
 	  if (game.stat.level >= 1300) {
 		  game.stack.isFrozen = true
 	  } else {
@@ -4224,6 +4229,11 @@ export const loops = {
       if (game.stat.initPieces > 0) {
         game.stat.initPieces = game.stat.initPieces - 1
       }
+	  if (game.stat.level >= 1000) {
+		  game.piece.isCyclone = true
+	  } else {
+		  game.piece.isCyclone = false
+	  }
 	  if (game.stat.level >= 1300) {
 		  game.stack.isFrozen = true
 	  } else {

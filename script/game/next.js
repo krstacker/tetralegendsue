@@ -74,35 +74,41 @@ export default class Next extends GameModule {
     }
     const piece = this.queue[0]
     let shape
+	let initialOrientation
+	if (this.parent.piece.isCyclone) {
+		initialOrientation = this.parent.piece.cycloneOrientation
+	} else {
+		initialOrientation = INITIAL_ORIENTATION[this.parent.rotationSystem][piece]
+	}
     switch (settings.settings.shapeOverride) {
       case "mono":
         shape =
           MONOMINO_PIECES[piece].shape[
-            INITIAL_ORIENTATION[this.parent.rotationSystem][piece]
+            initialOrientation
           ]
         break
       case "do":
         shape =
           DOMINO_PIECES[piece].shape[
-            INITIAL_ORIENTATION[this.parent.rotationSystem][piece]
+            initialOrientation
           ]
         break
       case "tro":
         shape =
           TROMINO_PIECES[piece].shape[
-            INITIAL_ORIENTATION[this.parent.rotationSystem][piece]
+            initialOrientation
           ]
         break
       case "pento":
         shape =
           PENTOMINO_PIECES[piece].shape[
-            INITIAL_ORIENTATION[this.parent.rotationSystem][piece]
+            initialOrientation
           ]
         break
       default:
         shape =
           PIECES[piece].shape[
-            INITIAL_ORIENTATION[this.parent.rotationSystem][piece]
+            initialOrientation
           ]
         break
     }
