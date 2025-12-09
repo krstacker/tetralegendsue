@@ -2810,7 +2810,7 @@ export const loops = {
       } else {
         game.piece.lockDelayLimit = 500
       }
-	  if (game.stat.level >= 16 && game.musicProgression < 1) {
+	  if (game.stat.level >= 10 && game.musicProgression < 1) {
 		if (game.stat.piece > 0 || game.timePassed > 0) {
           sound.killBgm()
           sound.playBgm(game.settings.music[1], game.type)
@@ -7824,7 +7824,7 @@ export const loops = {
       } else {
         game.piece.lockDelayLimit = 500
       }
-	  if (game.stat.level >= 32 && game.musicProgression < 1) {
+	  if (game.stat.level >= 20 && game.musicProgression < 1) {
 		if (game.stat.piece > 0 || game.timePassed > 0) {
           sound.killBgm()
           sound.playBgm(game.settings.music[1], game.type)
@@ -7912,7 +7912,7 @@ export const loops = {
       }
     },
     onPieceSpawn: (game) => {
-	  if (game.stat.level >= 16 && game.musicProgression < 1) {
+	  if (game.stat.level >= 10 && game.musicProgression < 1) {
 		if (game.stat.piece > 0 || game.timePassed > 0) {
           sound.killBgm()
           sound.playBgm(game.settings.music[1], game.type)
