@@ -113,7 +113,7 @@ export default class Game {
 	this.cachedAre = 0
 	this.cachedAreLine = 0
 	this.cachedAreLineModifier = 0
-	this.useFullAreLine = true
+	//this.useFullAreLine = true
     loadGameType(gametype)
       .then((gameData) => {
         gtag("event", "play", {
@@ -1148,6 +1148,7 @@ export default class Game {
 			if (game.rotationSystem === "drs" && game.type !== "sega") {
 				if (
 				game.piece.inAre &&
+				game.timePassed > 0 &&
 				(
 				input.getGameDown("specialKey") ||
 				input.getGameDown("moveLeft") ||
@@ -1172,14 +1173,7 @@ export default class Game {
 			}
 			if (game.rotationSystem === "ds" && game.type !== "sega") {
 				game.piece.areLimit = 0
-				if (game.piece.areLimitLineModifier <= 0) {
-					game.useFullAreLine = false
-					game.piece.areLimitLineModifier += game.piece.areLineLimit
-				} else {
-					if (game.useFullAreLine) {
-						game.piece.areLimitLineModifier = game.piece.areLineLimit
-					}
-				}
+				game.piece.areLimitLineModifier = game.piece.areLineLimit
 			}
           }
           game.particle.update(msPassed)
