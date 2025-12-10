@@ -164,6 +164,12 @@
   "standardXClassicDescription": {
     "message": "The old version of Standard before the rework"
   },
+  "monoLabel": {
+    "message": "Marathon EX"
+  },
+  "monoDescription": {
+    "message": "An improved version of Marathon"
+  },
   "footerLabel": {
     "message": ""
   }

@@ -1,0 +1,24 @@
+{
+  "settings": {
+    "width": 10,
+    "height": 20,
+    "hiddenHeight": 20,
+    "pieces": "standard",
+    "unfavored": "standardUnfavored",
+    "randomizer": "bag",
+    "rotationSystem": "srs",
+    "skin": "handheld",
+    "soundbank": "handheld",
+    "music": ["mono", "mono-last"],
+    "scoreTable": "guideline",
+	"disableDefaultSkinLoad": true,
+    "background": "marathon.jpg"
+  },
+  "piece": {
+    "areLimit": 33.3333333333,
+    "areLineLimit": 183.333333333,
+    "areLimitLineModifier": 1333.33333333,
+    "spinDetectionType": "3corner"
+  },
+  "stats": ["score", "level", "fallspeed", "line", "piece"]
+}

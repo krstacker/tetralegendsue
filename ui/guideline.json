@@ -48,6 +48,14 @@
     },
 	{
 	  "secretA": true,
+      "string": "monoLabel",
+      "stringDesc": "monoDescription",
+	  "langOverride": "ue_additions",
+      "action": "submenu",
+      "submenu": "mode/mono"
+    },
+	{
+	  "secretA": true,
       "string": "survivalClassicLabel",
       "stringDesc": "survivalClassicDescription",
 	  "langOverride": "ue_additions",

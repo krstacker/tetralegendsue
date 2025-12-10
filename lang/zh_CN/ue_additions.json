@@ -164,6 +164,12 @@
   "standardXClassicDescription": {
     "message": "重制前的旧版标准"
   },
+  "monoLabel": {
+    "message": "马拉松EX"
+  },
+  "monoDescription": {
+    "message": "马拉松的改进版"
+  },
   "footerLabel": {
     "message": ""
   }

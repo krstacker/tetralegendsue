@@ -164,6 +164,12 @@
   "standardXClassicDescription": {
     "message": "リワーク前の旧バージョンのスタンダード"
   },
+  "monoLabel": {
+    "message": "マラソンEX"
+  },
+  "monoDescription": {
+    "message": "マラソン改良版"
+  },
   "footerLabel": {
     "message": ""
   }

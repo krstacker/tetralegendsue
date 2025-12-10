@@ -2832,6 +2832,99 @@ export const loops = {
       game.updateStats()
     },
   },
+  mono: {
+    update: (arg) => {
+      collapse(arg)
+      if (arg.piece.inAre) {
+        initialDas(arg)
+        initialRotation(arg)
+        initialHold(arg)
+        arg.piece.are += arg.ms
+      } else {
+        respawnPiece(arg)
+        rotate(arg)
+        rotate180(arg)
+        shifting(arg)
+      }
+      gravity(arg)
+      softDrop(arg)
+      hardDrop(arg)
+      extendedLockdown(arg)
+      if (!arg.piece.inAre) {
+        hold(arg)
+      }
+      lockFlash(arg)
+      updateLasts(arg)
+      /* Might use this code later
+      $('#das').max = arg.piece.dasLimit;
+      $('#das').value = arg.piece.das;
+      $('#das').style.setProperty('--opacity', ((arg.piece.arr >= arg.piece.arrLimit) || arg.piece.inAre) ? 1 : 0);
+      */
+    },
+    onPieceSpawn: (game) => {
+      game.stat.level = Math.max(
+        settings.game.marathon.startingLevel,
+        Math.floor(game.stat.line / 10 + 1)
+      )
+      if (settings.game.marathon.levelCap >= 0) {
+        game.stat.level = Math.min(
+          game.stat.level,
+          settings.game.marathon.levelCap
+        )
+      }
+      const x = game.stat.level
+      const gravityEquation = (0.8 - (x - 1) * 0.007) ** (x - 1)
+      game.piece.gravity = Math.max(gravityEquation * 1000, framesToMs(1 / 20))
+      if (game.stat.level >= 20) {
+        game.piece.lockDelayLimit = ~~framesToMs(
+          30 * Math.pow(0.93, Math.pow(game.stat.level - 20, 0.8))
+        )
+      } else {
+        game.piece.lockDelayLimit = 500
+      }
+	  if (game.stat.level >= 16 && game.musicProgression < 1 && 
+	  game.settings.rotationSystem !== "heboris"
+	  ) {
+		if (game.stat.piece > 0 || game.timePassed > 0) {
+          sound.killBgm()
+          sound.playBgm(game.settings.music[1], game.type)
+		  game.musicProgression = 1
+        }
+      }
+      updateFallSpeed(game)
+      levelUpdate(game)
+    },
+    onInit: (game) => {
+      if (settings.game.marathon.lineGoal >= 0) {
+        game.lineGoal = settings.game.marathon.lineGoal
+      }
+	  if (game.settings.rotationSystem === "heboris") {
+		  game.settings.music = ["../heboris/hebo", "../heboris/hebo"]
+	  }
+	  game.makeSprite(
+		[
+			"red",
+			"orange",
+			"yellow",
+			"green",
+			"lightBlue",
+			"blue",
+			"purple",
+			"white",
+			"black",
+		],
+		["mino", "stack", "ghost"],
+		"handheld"
+	  )
+	  game.colors = PIECE_COLORS.standard
+      game.stat.level = settings.game.marathon.startingLevel
+      lastLevel = parseInt(settings.game.marathon.startingLevel)
+      game.piece.gravity = 1000
+	  game.musicProgression = 0
+      updateFallSpeed(game)
+      game.updateStats()
+    },
+  },
   konoha: {
     update: (arg) => {
       const game = gameHandler.game
