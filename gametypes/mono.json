@@ -20,5 +20,8 @@
     "areLimitLineModifier": 1333.33333333,
     "spinDetectionType": "3corner"
   },
+  "next": {
+    "nextLimit": 3
+  },
   "stats": ["score", "level", "fallspeed", "line", "piece"]
 }

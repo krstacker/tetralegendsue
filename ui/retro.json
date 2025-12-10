@@ -42,7 +42,13 @@
       "submenu": "mode/sega"
     },
 	{
-	  "secretA": true,
+      "string": "monoLabel",
+      "stringDesc": "monoDescription",
+	  "langOverride": "ue_additions",
+      "action": "submenu",
+      "submenu": "mode/mono"
+    },
+	{
 	  "string": "newCenturyLabel",
       "stringDesc": "newCenturyDescription",
 	  "langOverride": "ue_additions",

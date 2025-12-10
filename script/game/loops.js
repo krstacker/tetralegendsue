@@ -2862,16 +2862,7 @@ export const loops = {
       */
     },
     onPieceSpawn: (game) => {
-      game.stat.level = Math.max(
-        settings.game.marathon.startingLevel,
-        Math.floor(game.stat.line / 10 + 1)
-      )
-      if (settings.game.marathon.levelCap >= 0) {
-        game.stat.level = Math.min(
-          game.stat.level,
-          settings.game.marathon.levelCap
-        )
-      }
+      game.stat.level = Math.floor(game.stat.line / 10 + 1)
       const x = game.stat.level
       const gravityEquation = (0.8 - (x - 1) * 0.007) ** (x - 1)
       game.piece.gravity = Math.max(gravityEquation * 1000, framesToMs(1 / 20))
@@ -2917,8 +2908,8 @@ export const loops = {
 		"handheld"
 	  )
 	  game.colors = PIECE_COLORS.standard
-      game.stat.level = settings.game.marathon.startingLevel
-      lastLevel = parseInt(settings.game.marathon.startingLevel)
+      game.stat.level = 1
+      lastLevel = 1
       game.piece.gravity = 1000
 	  game.musicProgression = 0
       updateFallSpeed(game)
