@@ -926,7 +926,7 @@ export const loops = {
 		sound.add("voxexcellent")
 		game.end(true)
 	  }
-	  if (arg.piece.startingAre >= arg.piece.startingAreLimit) {
+	  if (arg.piece.startingAre >= arg.piece.startingAreLimit && !arg.piece.inAre) {
         gaugeTimer += arg.ms
         if (gaugeTimer > 1000) {
 		  gaugeTimer -= 1000

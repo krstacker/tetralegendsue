@@ -9,7 +9,7 @@
     "rotationSystem": "worldae",
     "skin": "pyramidal",
     "soundbank": "tgm4",
-    "music": "../arcade/arcade3",
+    "music": "../ti/arcade3",
     "hasDangerBgm": false,
     "scoreTable": "tgm",
     "background": "marathon.jpg",
