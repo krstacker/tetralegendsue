@@ -280,7 +280,7 @@ const updateTAPGrade = (game) => {
 	  } else if (game.internalTAPGrade >= maxInternalGrade) {
 		game.stat.grade = "S9"
 	  } else {
-	    game.stat.grade = grade[game.internalTAPGrade]
+	    game.stat.grade = gradeTable[game.internalTAPGrade]
 	  }
 	  if (lastGrade !== game.stat.grade && game.stat.grade !== "N/A") {
 		  if (game.stat.grade !== "9") {
@@ -622,7 +622,7 @@ const updateAEGrade = (game) => {
 	  }
 	  game.stat.grade = `${A} of ${B}`
 	  if (lastGrade !== game.stat.grade && game.stat.grade !== "N/A") {
-		  if (game.stat.grade !== "9") {
+		  if (game.stat.grade !== "0 of 0") {
 			  sound.add("gradeup")
 		  }
 	  }
