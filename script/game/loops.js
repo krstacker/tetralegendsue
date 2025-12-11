@@ -8664,7 +8664,7 @@ export const loops = {
     },
     onInit: (game) => {
       game.lineGoal = 150
-	  shownCycloneMessage = settings.game.frozenx.startingLevel < 7
+	  shownCycloneMessage = settings.game.frozenx.startingLevel >= 7
       game.stat.level = settings.game.frozenx.startingLevel
       lastLevel = parseInt(settings.game.frozenx.startingLevel)
       game.prefixes.level = "CD"
