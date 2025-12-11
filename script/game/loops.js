@@ -3050,6 +3050,11 @@ export const loops = {
 		}
 		game.playedHurryUp = false
       }
+	  if (game.piece.inAre) {
+		  if (input.getGameDown("specialKey")) {
+			  game.piece.areLimit = 0
+		  }
+	  }
 	  testModeUpdate()
     },
     onInit: (game) => {
@@ -9997,6 +10002,11 @@ export const loops = {
 		sound.killVox()
 		sound.add("voxexcellent")
 		game.end(true)
+	  }
+	  if (game.piece.inAre) {
+		  if (input.getGameDown("specialKey")) {
+			  game.piece.areLimit = 0
+		  }
 	  }
 	  testModeUpdate()
     },
