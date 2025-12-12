@@ -2977,7 +2977,7 @@ export const loops = {
 	  const gravityTable = [
         53, 49, 45, 41, 37, 33, 28, 22, 17, 11, 9, 8, 7, 6, 5, 4, 3, 1/3, 1/9, 1/20,
       ]
-	  game.piece.gravity = gravityTable[game.stat.level]
+	  game.piece.gravity = framesToMs(gravityTable[game.stat.level])
 	  if (game.stat.level >= 19) {
         game.piece.lockDelayLimit = ~~framesToMs(
           30 * Math.pow(0.93, Math.pow(game.stat.level - 20, 0.8))
