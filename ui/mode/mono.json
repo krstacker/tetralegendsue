@@ -10,6 +10,18 @@
       "string": "monoLabel",
       "langOverride": "ue_additions",
       "type": "header"
+    },
+	{
+      "string": "startingLevelLabel",
+      "stringDesc": "startingLevelDescription",
+      "type": "slider",
+      "action": "slider",
+      "max": 19,
+      "min": 0,
+      "discrete": 1,
+      "setting": "startingLevel",
+      "gameName": "marathon",
+      "settingType": "game"
     }
   ]
 }

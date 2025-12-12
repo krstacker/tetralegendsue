@@ -90,7 +90,7 @@ const levelUpdate = (game) => {
   if (game.stat.level !== lastLevel) {
     sound.add("levelup")
     game.stack.levelUpAnimation = 0
-    if ((game.stat.level - 1) % 5 === 0) {
+    if (game.stat.line % 50 === 0) {
       sound.add("levelupmajor")
     } else {
       sound.add("levelupminor")
@@ -105,7 +105,7 @@ const levelUpdateAce = (game) => {
   if (game.stat.level !== lastLevel) {
     sound.add("levelup")
     game.stack.levelUpAnimation = 0
-    if ((game.stat.level - 1) % 5 === 0) {
+    if (game.stat.line % 50 === 0) {
       sound.add("levelupmajor")
     } else {
       sound.add("levelupminor")
@@ -2944,7 +2944,10 @@ export const loops = {
       */
     },
     onPieceSpawn: (game) => {
-      game.stat.level = Math.floor(game.stat.line / 10 + 1)
+      game.stat.level = Math.min(
+		settings.game.mono.startingLevel,
+		Math.floor(game.stat.line / 10 + 1)
+	  )
       const x = game.stat.level
       const gravityEquation = (0.8 - (x - 1) * 0.007) ** (x - 1)
       game.piece.gravity = Math.max(gravityEquation * 1000, framesToMs(1 / 20))
@@ -2955,7 +2958,7 @@ export const loops = {
       } else {
         game.piece.lockDelayLimit = 500
       }
-	  if (game.stat.level >= 16 && game.musicProgression < 1 && 
+	  if (game.stat.line >= 150 && game.musicProgression < 1 && 
 	  game.settings.rotationSystem !== "heboris"
 	  ) {
 		if (game.stat.piece > 0 || game.timePassed > 0) {
@@ -2989,9 +2992,11 @@ export const loops = {
 		["mino", "stack", "ghost"],
 		"handheld"
 	  )
+	  game.hideGrid = true
+	  game.stack.updateGrid()
 	  game.colors = PIECE_COLORS.standard
-      game.stat.level = 1
-      lastLevel = 1
+      game.stat.level = settings.game.mono.startingLevel
+      lastLevel = parseInt(settings.game.mono.startingLevel)
       game.piece.gravity = 1000
 	  game.musicProgression = 0
       updateFallSpeed(game)
@@ -7983,9 +7988,9 @@ export const loops = {
     onPieceSpawn: (game) => {
       game.stat.level = Math.max(
 		settings.game.standardx.startingLevel,
-		Math.floor(game.stat.line / 10 + 1)
+		Math.floor(game.stat.line / 10)
 	  )
-	  const x = game.stat.level
+	  const x = game.stat.level + 1
       const gravityEquation = (0.9 - (x - 1) * 0.001) ** (x - 1)
       game.piece.gravity = Math.max(gravityEquation * 1000, framesToMs(1 / 20))
       if (game.stat.level >= 40) {
@@ -9389,6 +9394,8 @@ export const loops = {
     },
     onInit: (game) => {
       game.lineGoal = null
+	  game.hideGrid = true
+	  game.stack.updateGrid()
 	  initMusicProgression(game)
       game.stat.level = 0
       lastLevel = 0

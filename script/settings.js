@@ -168,6 +168,9 @@ class Settings {
         cpuTier: 1,
 		regulationMode: false,
       },
+	  mono: {
+        startingLevel: 0,
+      },
     }
     this.settings = {}
     this.controls = {}
