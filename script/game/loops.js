@@ -1976,7 +1976,7 @@ export const loops = {
 			//game.stack.isFading = true
 			game.stack.endRollStart()
 			rtaGoal = game.rta + 55000
-			if (game.useHeboMusic) {
+			if (game.useHeboMusic !== true) {
 				sound.loadBgm(["ending1"], "ti")
 				sound.killBgm()
 				sound.playBgm(["ending1"], "ti")
