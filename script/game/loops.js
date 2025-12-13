@@ -92,7 +92,7 @@ const levelUpdate = (game) => {
   if (game.stat.level !== lastLevel) {
     sound.add("levelup")
     game.stack.levelUpAnimation = 0
-    if (game.stat.line % 50 === 0) {
+    if (Math.floor(game.stat.line / 10) % 5 === 0) {
       sound.add("levelupmajor")
     } else {
       sound.add("levelupminor")
@@ -107,7 +107,7 @@ const levelUpdateAce = (game) => {
   if (game.stat.level !== lastLevel) {
     sound.add("levelup")
     game.stack.levelUpAnimation = 0
-    if (game.stat.line % 50 === 0) {
+    if (Math.floor(game.stat.line / 10) % 5 === 0) {
       sound.add("levelupmajor")
     } else {
       sound.add("levelupminor")
