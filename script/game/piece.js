@@ -338,6 +338,9 @@ export default class Piece extends GameModule {
 		  colour = this.boneColor
 		  suffix = "bone"
 		}
+		if (this.useRetroColors) {
+          suffix = `-${this.parent.stat.level % 10}`
+        }
         img = document.getElementById(`ghost-${colour}${suffix}`)
         break
       case "piece":
