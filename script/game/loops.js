@@ -9748,7 +9748,7 @@ export const loops = {
 			"white",
 			"black",
 		],
-		["mino", "stack"],
+		["mino", "stack", "ghost"],
 		segaSkin
 	  )
       game.stat.level = 0
