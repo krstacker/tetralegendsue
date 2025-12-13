@@ -3262,7 +3262,7 @@ export const loops = {
             "l-9",
             "r-9",
           ],
-          ["mino", "ghost", "stack"],
+          ["mino", "stack", "ghost"],
           "retro-special-nesmodern"
         )
         game.piece.useRetroColors = true
@@ -3313,7 +3313,7 @@ export const loops = {
             "l-9",
             "r-9",
           ],
-          ["mino", "ghost", "stack"],
+          ["mino", "stack", "ghost"],
           "retro-special-nesmodern"
         )
         game.piece.useRetroColors = true
@@ -3323,7 +3323,7 @@ export const loops = {
       game.stack.levelUpAnimationLimit = 450
 	  game.hideGrid = true
 	  game.stack.updateGrid()
-	  game.colors = PIECE_COLORS.standard
+	  game.colors = PIECE_COLORS.retroSpecial
       game.stat.level = settings.game.nesmodern.startingLevel
       lastLevel = parseInt(settings.game.nesmodern.startingLevel)
       game.piece.gravity = 1000
