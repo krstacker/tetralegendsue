@@ -10,6 +10,7 @@
       "type": "header"
     },
 	{
+	  "default": true,
       "string": "modernNesLabel",
       "stringDesc": "modernNesDescription",
 	  "langOverride": "ue_additions",
