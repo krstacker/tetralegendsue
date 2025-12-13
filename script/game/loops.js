@@ -83,6 +83,7 @@ let coolPacing = 50
 let shiraseTargetLevel = 1300
 let segaSkin = "sega"
 let openerAttacks = []
+let openerIndex = 0
 let internalTIGrade = 0
 let gaugeTimer = 0
 let bpm
