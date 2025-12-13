@@ -3250,8 +3250,8 @@ export const loops = {
             "l-9",
             "r-9",
           ],
-          ["mino"],
-          "retro-special"
+          ["mino", "ghost", "stack"],
+          "retro-special-nesmodern"
         )
         game.piece.useRetroColors = true
         game.colors = PIECE_COLORS.retroSpecial
@@ -3289,8 +3289,8 @@ export const loops = {
             "l-9",
             "r-9",
           ],
-          ["mino"],
-          "retro-special"
+          ["mino", "ghost", "stack"],
+          "retro-special-nesmodern"
         )
         game.piece.useRetroColors = true
         game.colors = PIECE_COLORS.retroSpecial
